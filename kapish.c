@@ -6,6 +6,7 @@ Assignment #1, Part #1: Doubly linked list - Takes in a number and generates a d
 January 16th 2019
 */
 #include <stdio.h> //standard input and output library
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
