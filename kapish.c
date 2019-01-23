@@ -10,7 +10,7 @@ January 16th 2019
 #include <string.h>
 #include <stdbool.h>
 
-char* removeNewLine(char* string) {
+void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
 	}
@@ -23,10 +23,10 @@ int main(int argc, char *argv[]) {
 	while (exit == false) {
 		char input[512];
 		fgets(input, 512, stdin);
+		removeNewLine(input);
 		char *parsed;
 		parsed = strtok(input, " ");
 		while (parsed != NULL) {
-			parsed = removeNewLine(parsed);
 			if (strncmp(parsed, "setenv", 512) == 0 ) {
 				char *var = strtok(NULL, " ");
 				char *value = strtok(NULL, " ");
