@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 					chdir(dir);
 				}
 				else {
-					chdir();
+					chdir(getenv("HOME"));
 				}
 				char cwd[PATH_MAX];
 				getcwd(cwd, sizeof(cwd));
