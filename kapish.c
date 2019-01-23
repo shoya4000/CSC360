@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 					chdir("~");
 				}
 				char cwd[PATH_MAX];
-				getcwd(cwd, sizeof(cwd))
+				getcwd(cwd, sizeof(cwd));
 				printf("cwd: %s", cwd);
 				break;
 			}
