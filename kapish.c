@@ -11,7 +11,7 @@ January 16th 2019
 
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
-		string = string[strlen(string) - 1] = '\0';
+		string[strlen(string) - 1] = '\0';
 	}
 	return string;
 }
