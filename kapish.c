@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 				char *value = strtok(NULL, " ");
 				printf("debug: value: %s", value);
 				setenv(var, value, 1);
-				printf("wat: %s\n", getenv("wat"));
+				printf("wat: %s", getenv("wat"));
 			}
 			else if (strncmp(parsed, "unsetenv", 512) == 0 ) {
 				char *var = strtok(NULL, " ");
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 
 		}
 		if (exit != true) {
-			printf("\n? ");
+			printf("? ");
 		}
 	}
 
