@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 	parsed = strtok(input, " ");
 	printf("Your input was:\n%s", parsed);
 	while (parsed != NULL) {
-		printf("%s\n", parsed)
+		printf("%s\n", parsed);
 		parsed = strtok(NULL, " ");
 	}
 
