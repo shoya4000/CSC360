@@ -19,6 +19,8 @@ int main(int argc, char *argv[]) {
 		parsed = strtok(input, " ");
 		printf("Your input was:\n");
 		while (parsed != NULL) {
+			int result = strcmp(parsed, "exit");
+			printf("%d", result);
 			if (strcmp(parsed, "exit") == 0 ) {
 				printf("ding");
 				exit = true;
