@@ -20,8 +20,14 @@ int main(int argc, char *argv[]) {
 		while (parsed != NULL) {
 			strtok(parsed, "\n");
 			int result = strncmp(parsed, "exit", 512);
-			if (strncmp(parsed, "cd", 512) == 0 ) {
-				printf("cd to");
+			if (strncmp(parsed, "setenv", 512) == 0 ) {
+				printf("setenv");
+			}
+			else if (strncmp(parsed, "unsetenv", 512) == 0 ) {
+				printf("unsetenv");
+			}
+			else if (strncmp(parsed, "cd", 512) == 0 ) {
+				printf("cd");
 			}
 			else if (strncmp(parsed, "exit", 512) == 0 ) {
 				exit = true;
