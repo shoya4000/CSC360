@@ -17,11 +17,12 @@ void removeNewLine(char* string) {
 }
 
 int main(int argc, char *argv[]) {
-	bool exit = false;
-	printf("? ");
-	while (exit == false) {
+	while (true) {
+		printf("? ");
 		char input[512];
-		fgets(input, 512, stdin);
+		if (fgets(input, 512, stdin) == NULL) {
+			exit(EXIT_SUCCESS);
+		}
 		removeNewLine(input);
 		char *parsed;
 		parsed = strtok(input, " ");
@@ -41,15 +42,11 @@ int main(int argc, char *argv[]) {
 				printf("cd");
 			}
 			else if (strncmp(parsed, "exit", 512) == 0 ) {
-				exit = true;
-				break;
+				exit(EXIT_SUCCESS);
 			}
 
 			parsed = strtok(NULL, " ");
 
-		}
-		if (exit != true) {
-			printf("? ");
 		}
 	}
 
