@@ -30,13 +30,11 @@ int main(int argc, char *argv[]) {
 				char *var = strtok(NULL, " ");
 				char *value = strtok(NULL, " ");
 				setenv(var, value, 1);
-				printf("wat: %s", getenv("wat"));
 				break;
 			}
 			else if (strncmp(parsed, "unsetenv", 512) == 0 ) {
 				char *var = strtok(NULL, " ");
 				unsetenv(var);
-				printf("wat: %s", getenv("wat"));
 				break;
 			}
 			else if (strncmp(parsed, "cd", 512) == 0 ) {
