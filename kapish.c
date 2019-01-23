@@ -10,21 +10,23 @@ January 16th 2019
 #include <stdbool.h>
 
 int main(int argc, char *argv[]) {
-	bool exit = FALSE;
-	while (exit == FALSE)
+	bool exit = false;
+	while (exit == false) {
 		char input[512];
-	printf("? ");
-	fgets(input, 512, stdin);
-	char *parsed;
-	parsed = strtok(input, " ");
-	printf("Your input was:\n");
-	while (parsed != NULL) {
-		if (strcmp(parsed, "exit") == 0 ) {
-			exit = TRUE;
-			break;
+		printf("? ");
+		fgets(input, 512, stdin);
+		char *parsed;
+		parsed = strtok(input, " ");
+		printf("Your input was:\n");
+		while (parsed != NULL) {
+			if (strcmp(parsed, "exit") == 0 ) {
+				exit = true;
+				break;
+			}
+			printf("%s\n", parsed);
+			parsed = strtok(NULL, " ");
 		}
-		printf("%s\n", parsed);
-		parsed = strtok(NULL, " ");
 	}
+
 	return 0;
 }
