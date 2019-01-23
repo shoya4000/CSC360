@@ -20,10 +20,14 @@ int main(int argc, char *argv[]) {
 		while (parsed != NULL) {
 			strtok(parsed, "\n");
 			int result = strncmp(parsed, "exit", 512);
-			if (strncmp(parsed, "exit", 512) == 0 ) {
+			if (strncmp(parsed, "cd", 512) == 0 ) {
+				printf("cd to");
+			}
+			else if (strncmp(parsed, "exit", 512) == 0 ) {
 				exit = true;
 				break;
 			}
+
 			parsed = strtok(NULL, " ");
 		}
 	}
