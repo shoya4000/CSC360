@@ -29,15 +29,15 @@ int main(int argc, char *argv[]) {
 			parsed = removeNewLine(parsed);
 			if (strncmp(parsed, "setenv", 512) == 0 ) {
 				char *var = strtok(NULL, " ");
-				printf("debug: var: %s", var);
 				char *value = strtok(NULL, " ");
-				printf("debug: value: %s", value);
 				setenv(var, value, 1);
 				printf("wat: %s", getenv("wat"));
+				break;
 			}
 			else if (strncmp(parsed, "unsetenv", 512) == 0 ) {
 				char *var = strtok(NULL, " ");
 				unsetenv(var);
+				printf("wat: %s", getenv("wat"));
 				break;
 			}
 			else if (strncmp(parsed, "cd", 512) == 0 ) {
