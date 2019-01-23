@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
 			}
 			else if (strncmp(parsed, "cd", 512) == 0 ) {
 				char *dir = strtok(NULL, " ");
+				printf("debug: %s", dir);
 				if (dir != NULL) {
 					chdir(dir);
 				}
