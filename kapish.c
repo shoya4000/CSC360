@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 		parsed = strtok(input, " ");
 		printf("debug: parsed: <%s>\n", parsed);
 		while (parsed != NULL) {
-			int result = strcmp(parsed, "exit");
+			int result = strncmp(parsed, "exit", 512);
 			printf("debug: result: <%d>\n", result);
 			if (strncmp(parsed, "exit", 512) == 0 ) {
 				printf("ding");
