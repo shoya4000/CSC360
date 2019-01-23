@@ -9,7 +9,7 @@ January 16th 2019
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-	char *input;
+	char input[512];
 	printf("? ");
 	scanf("%s", input);
 	printf("Your input was:\n%s", input);
