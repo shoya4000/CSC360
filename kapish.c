@@ -9,8 +9,6 @@ January 16th 2019
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <unistd.h>
-#include <limits.h>
 
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
@@ -43,16 +41,12 @@ int main(int argc, char *argv[]) {
 			}
 			else if (strncmp(parsed, "cd", 512) == 0 ) {
 				char *dir = strtok(NULL, " ");
-				printf("debug: %s", dir);
 				if (dir != NULL) {
 					chdir(dir);
 				}
 				else {
 					chdir(getenv("HOME"));
 				}
-				char cwd[PATH_MAX];
-				getcwd(cwd, sizeof(cwd));
-				printf("cwd: %s", cwd);
 				break;
 			}
 			else if (strncmp(parsed, "exit", 512) == 0 ) {
