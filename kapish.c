@@ -9,13 +9,19 @@ January 16th 2019
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-	char input[512];
+	bool exit = false;
+	while (exit == false)
+		char input[512];
 	printf("? ");
 	fgets(input, 512, stdin);
 	char *parsed;
 	parsed = strtok(input, " ");
 	printf("Your input was:\n");
 	while (parsed != NULL) {
+		if (strcmp(parsed, "exit") == 0 ) {
+			exit = true;
+			break;
+		}
 		printf("%s\n", parsed);
 		parsed = strtok(NULL, " ");
 	}
