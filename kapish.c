@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 		while (parsed != NULL) {
 			int result = strcmp(parsed, "exit");
 			printf("debug: result: <%d>\n", result);
-			if (strncmp(parsed, "exit") == 0 ) {
+			if (strncmp(parsed, "exit", 512) == 0 ) {
 				printf("ding");
 				exit = true;
 				break;
