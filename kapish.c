@@ -22,7 +22,9 @@ int main(int argc, char *argv[]) {
 			int result = strncmp(parsed, "exit", 512);
 			if (strncmp(parsed, "setenv", 512) == 0 ) {
 				char *var = strtok(NULL, " ");
+				printf("debug: var: %s", var);
 				char *value = strtok(NULL, " ");
+				printf("debug: value: %s", value);
 				setenv(var, value, 1);
 				printf("setenv");
 			}
