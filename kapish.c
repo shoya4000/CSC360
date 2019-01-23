@@ -17,17 +17,13 @@ int main(int argc, char *argv[]) {
 		fgets(input, 512, stdin);
 		char *parsed;
 		parsed = strtok(input, " ");
-		printf("debug: parsed: <%s>\n", parsed);
 		while (parsed != NULL) {
 			strtok(parsed, "\n");
 			int result = strncmp(parsed, "exit", 512);
-			printf("debug: result: <%d>\n", result);
 			if (strncmp(parsed, "exit", 512) == 0 ) {
-				printf("ding");
 				exit = true;
 				break;
 			}
-			printf("debug: parsed: <%s>\n", parsed);
 			parsed = strtok(NULL, " ");
 		}
 	}
