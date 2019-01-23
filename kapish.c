@@ -11,7 +11,7 @@ January 16th 2019
 
 int main(int argc, char *argv[]) {
 	bool exit = false;
-	while (exit != false) {
+	while (exit == false) {
 		char input[512];
 		printf("? ");
 		fgets(input, 512, stdin);
