@@ -14,11 +14,10 @@ int main(int argc, char *argv[]) {
 	fgets(input, 512, stdin);
 	char *parsed;
 	parsed = strtok(input, " ");
-	printf("Your input was:\n%s", parsed);
+	printf("Your input was:\n");
 	while (parsed != NULL) {
 		printf("%s\n", parsed);
 		parsed = strtok(NULL, " ");
 	}
-
 	return 0;
 }
