@@ -12,7 +12,8 @@ int main(int argc, char *argv[]) {
 	char input[512];
 	printf("? ");
 	fgets(input, 512, stdin);
-	char *parsed = strtok(input, " ");
+	char *parsed;
+	parsed = strtok(input, " ");
 	printf("Your input was:\n%s", parsed);
 	return 0;
 }
