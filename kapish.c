@@ -21,13 +21,13 @@ int main(int argc, char *argv[]) {
 			strtok(parsed, "\n");
 			int result = strncmp(parsed, "exit", 512);
 			if (strncmp(parsed, "setenv", 512) == 0 ) {
-				var = strtok(NULL, " ");
-				value = strtok(NULL, " ");
+				char *var = strtok(NULL, " ");
+				char *value = strtok(NULL, " ");
 				setenv(var, value, 1);
 				printf("setenv");
 			}
 			else if (strncmp(parsed, "unsetenv", 512) == 0 ) {
-				var = strtok(NULL, " ");
+				char *var = strtok(NULL, " ");
 				unsetenv(var);
 				break;
 			}
