@@ -14,7 +14,6 @@ void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
 	}
-	return string;
 }
 
 int main(int argc, char *argv[]) {
