@@ -9,7 +9,7 @@ January 16th 2019
 #include <string.h>
 #include <stdbool.h>
 
-void removeNewLine(char* string) {
+char* removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
 	}
