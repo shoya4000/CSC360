@@ -7,10 +7,11 @@ January 16th 2019
 */
 #include <stdio.h> //standard input and output library
 #include <string.h>
+#include <stdbool.h>
 
 int main(int argc, char *argv[]) {
-	bool exit = false;
-	while (exit == false)
+	bool exit = FALSE;
+	while (exit == FALSE)
 		char input[512];
 	printf("? ");
 	fgets(input, 512, stdin);
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]) {
 	printf("Your input was:\n");
 	while (parsed != NULL) {
 		if (strcmp(parsed, "exit") == 0 ) {
-			exit = true;
+			exit = TRUE;
 			break;
 		}
 		printf("%s\n", parsed);
