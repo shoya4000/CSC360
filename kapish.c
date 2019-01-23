@@ -35,10 +35,9 @@ int main(int argc, char *argv[]) {
 			}
 
 			parsed = strtok(NULL, " ");
-			if (parsed != NULL) {
-				printf("\n? ");
-			}
+
 		}
+		printf("\n? ");
 	}
 
 	return 0;
