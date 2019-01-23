@@ -11,7 +11,7 @@ January 16th 2019
 int main(int argc, char *argv[]) {
 	char input[512];
 	printf("? ");
-	sscanf("%s", input);
+	fgets(input, 512, stdin);
 	printf("Your input was:\n%s", input);
 	return 0;
 }
