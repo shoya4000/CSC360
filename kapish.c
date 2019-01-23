@@ -12,5 +12,6 @@ int main(int argc, char *argv[]) {
 	char *input;
 	printf("? ");
 	scanf("%s", input);
+	printf("Your input was:\n%s", input);
 	return 0;
 }
