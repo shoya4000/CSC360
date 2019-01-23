@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 				else {
 					chdir("~");
 				}
-				printf("PWD: %s", getenv("PWD"));
+				printf("cwd: %s", getcwd());
 				break;
 			}
 			else if (strncmp(parsed, "exit", 512) == 0 ) {
