@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 				char *value = strtok(NULL, " ");
 				printf("debug: value: %s", value);
 				setenv(var, value, 1);
-				printf("setenv");
+				printenv();
 			}
 			else if (strncmp(parsed, "unsetenv", 512) == 0 ) {
 				char *var = strtok(NULL, " ");
