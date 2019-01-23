@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
 		printf("? ");
 		char input[512];
 		if (fgets(input, 512, stdin) == NULL) {
+			printf("\n");
 			exit(EXIT_SUCCESS);
 		}
 		removeNewLine(input);
@@ -39,14 +40,19 @@ int main(int argc, char *argv[]) {
 				break;
 			}
 			else if (strncmp(parsed, "cd", 512) == 0 ) {
-				printf("cd");
+				char *dir = strtok(NULL, " ");
+				if (dir != NULL) {
+					chdir(dir);
+				}
+				else {
+					chdir("~");
+				}
+				break;
 			}
 			else if (strncmp(parsed, "exit", 512) == 0 ) {
 				exit(EXIT_SUCCESS);
 			}
-
 			parsed = strtok(NULL, " ");
-
 		}
 	}
 
