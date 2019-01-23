@@ -9,6 +9,13 @@ January 16th 2019
 #include <string.h>
 #include <stdbool.h>
 
+void removeNewLine(char* string) {
+	if (string[strlen(string) - 1] == '\n') {
+		string = string[strlen(string) - 1] = '\0';
+	}
+	return string;
+}
+
 int main(int argc, char *argv[]) {
 	bool exit = false;
 	printf("? ");
@@ -18,8 +25,7 @@ int main(int argc, char *argv[]) {
 		char *parsed;
 		parsed = strtok(input, " ");
 		while (parsed != NULL) {
-			strtok(parsed, "\n");
-			int result = strncmp(parsed, "exit", 512);
+			parsed = removeNewLine(parsed);
 			if (strncmp(parsed, "setenv", 512) == 0 ) {
 				char *var = strtok(NULL, " ");
 				printf("debug: var: %s", var);
