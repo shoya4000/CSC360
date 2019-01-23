@@ -20,6 +20,7 @@ int main(int argc, char *argv[]) {
 		printf("Your input was:\n");
 		while (parsed != NULL) {
 			if (strcmp(parsed, "exit") == 0 ) {
+				printf("ding");
 				exit = true;
 				break;
 			}
