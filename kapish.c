@@ -40,7 +40,7 @@ void addHistory(char* command) {
 
 void printHistory() {
 	struct node *item = START;
-	for (int i = 0; i < listLength; i++) {
+	for (int i = 0; i < historyLength; i++) {
 		printf("%s\n", item->the_command);
 		item = item->next;
 	}
@@ -48,7 +48,7 @@ void printHistory() {
 
 void freeHistory() {
 	struct node *item = START;
-	for (int i = 0; i < listLength; i++) {
+	for (int i = 0; i < historyLength; i++) {
 		item = item->next;
 		free(item->prev->the_command);
 		free(item->prev);
