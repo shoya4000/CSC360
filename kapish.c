@@ -55,7 +55,6 @@ void freeHistory() {
 		free(item->prev);
 	}
 	free(item);
-	historyLength--;
 }
 
 char* reexecute(char* prefix) {
