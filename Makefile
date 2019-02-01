@@ -1,2 +1,2 @@
 kapishmake: kapish.c
-    gcc -g -o kapish kapish.c -Wall -Werror
+	gcc -g -o -Wall -Werror kapish kapish.c 
