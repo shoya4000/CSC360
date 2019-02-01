@@ -58,12 +58,14 @@ void freeHistory() {
 	historyLength--;
 }
 
-char* reexecute(char** prefix) {
-	printf("%s\n", prefix*);
-	struct node *item = START;
+char* reexecute(char* prefix) {
 	int i;
+	for (i = 0; i < strlen(prefix) - 1; i++) {
+		prefix[i] = prefix[i + 1];
+	}
+	struct node *item = START;
 	for (i = 0; i < historyLength; i++) {
-		if (strncmp(prefix*, item->the_command, strlen(prefix)) == 0) {
+		if (strncmp(prefix, item->the_command, strlen(prefix)) == 0) {
 			return item->the_command;
 		}
 		item = item->next;
@@ -91,7 +93,7 @@ int main(int argc, char *argv[]) {
 		if (input[0] != '!') {
 			addHistory(input);
 		} else {
-			strcpy(input*++, reexecute(input));
+			strcpy(input, reexecute(input));
 		}
 		char *parsed;
 		parsed = strtok(input, " ");
