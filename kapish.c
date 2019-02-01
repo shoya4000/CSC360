@@ -58,7 +58,6 @@ int main(int argc, char *argv[]) {
 				pid_t childID = fork();
 				if (childID == 0) {
 					signal(SIGINT, SIG_DFL);
-					setpgid(0, 0);
 					execvp(argv[0], argv);
 					perror("Error");
 				} else {
