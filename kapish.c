@@ -27,15 +27,10 @@ void addHistory(char* command) {
 	check_mem_fail(newNode);
 	newNode->the_command = malloc(sizeof * command);
 	strcpy(newNode->the_command, command);
-	struct node *find = START;
-	int i;
-	for (i = 0; i < pos; i++) {
-		find = find->next;
-	}
-	newNode->next = find;
-	newNode->prev = find->prev;
-	find->prev->next = newNode;
-	find->prev = newNode;
+	newNode->prev = END;
+	newNode->next = NULL;
+	END->next = newNode;
+	END = newNode;
 	historyLength++;
 }
 
