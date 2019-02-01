@@ -54,6 +54,7 @@ void freeHistory() {
 		free(item->prev->the_command);
 		free(item->prev);
 	}
+	free(item->the_command);
 	free(item);
 }
 
