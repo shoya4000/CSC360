@@ -53,7 +53,7 @@ void freeHistory() {
 		printf("Freeing: %s\n", item->the_command);
 		item = item->next;
 		//free(item->prev->the_command);
-		if (item->prev) {
+		if (item) {
 			free(item->prev);
 		}
 	}
