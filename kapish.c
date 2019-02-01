@@ -50,7 +50,6 @@ void freeHistory() {
 	int i;
 	for (i = 0; i < historyLength; i++) {
 		struct node *item = START;
-		printf("Freeing: %s\n", item->the_command);
 		if (item->next) {
 			START = item->next;
 		}
