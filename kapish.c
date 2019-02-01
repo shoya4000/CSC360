@@ -47,13 +47,15 @@ void printHistory() {
 }
 
 void freeHistory() {
-	struct node *item = START;
 	int i;
 	for (i = 0; i < historyLength; i++) {
+		struct node *item = START;
 		printf("Freeing: %s\n", item->the_command);
+		if (item->next) {
+			item->next = START;
+		}
 		free(item->the_command);
-		item = item->next;
-		free(item->prev);
+		free(item);
 	}
 }
 
