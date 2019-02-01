@@ -2,12 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <signal.h>
 
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
 	}
 }
+
+void signalFunction(int signal) {}
 
 int main(int argc, char *argv[]) {
 	while (true) {
@@ -53,6 +56,7 @@ int main(int argc, char *argv[]) {
 					parsed = argv[i];
 					i++;
 				}
+				signal(SIGINT, signalFunction);
 				pid_t childID = fork();
 				if (childID == 0) {
 					setpgid(0, 0);
