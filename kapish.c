@@ -10,8 +10,6 @@ void removeNewLine(char* string) {
 	}
 }
 
-void signalFunction(int signal) {}
-
 int main(int argc, char *argv[]) {
 	while (true) {
 		printf("? ");
@@ -56,7 +54,7 @@ int main(int argc, char *argv[]) {
 					parsed = argv[i];
 					i++;
 				}
-				signal(SIGINT, signalFunction);
+				signal(SIGINT, SIG_IGN);
 				pid_t childID = fork();
 				if (childID == 0) {
 					signal(SIGINT, SIG_DFL);
