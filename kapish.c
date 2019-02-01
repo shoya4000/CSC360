@@ -50,6 +50,7 @@ void freeHistory() {
 	struct node *item = START;
 	int i;
 	for (i = 0; i < historyLength; i++) {
+		printf("Freeing: %s\n", item->the_command);
 		item = item->next;
 		free(item->prev->the_command);
 		free(item->prev);
