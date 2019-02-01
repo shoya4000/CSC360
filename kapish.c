@@ -46,6 +46,7 @@ int main(int argc, char *argv[]) {
 				exit(EXIT_SUCCESS);
 			}
 			else {
+				argv[0] = parsed;
 				pid_t childID = fork();
 				if (childID == 0) {
 					execvp(parsed);
