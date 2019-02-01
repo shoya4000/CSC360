@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <signal.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 void check_mem_fail(const void *a) {
