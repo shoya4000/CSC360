@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
 				pid_t childID = fork();
 				if (childID == 0) {
 					execvp(argv[0], argv);
-					perror("Error: ");
+					perror("Error");
 				} else {
 					wait(NULL);
 				}
