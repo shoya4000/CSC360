@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <errno.h>
 
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
@@ -56,16 +55,15 @@ int main(int argc, char *argv[]) {
 				}
 				pid_t childID = fork();
 				if (childID == 0) {
+					setpgid(0, 0);
 					execvp(argv[0], argv);
 					perror("Error");
 				} else {
 					wait(NULL);
 				}
-
 			}
 			parsed = strtok(NULL, " ");
 		}
 	}
-
 	return 0;
 }
