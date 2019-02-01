@@ -74,7 +74,6 @@ int main(int argc, char *argv[]) {
 			exit(EXIT_SUCCESS);
 		}
 		removeNewLine(input);
-		printf("input: %s", input);
 		addHistory(input);
 		char *parsed;
 		parsed = strtok(input, " ");
