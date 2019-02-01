@@ -12,6 +12,7 @@ void removeNewLine(char* string) {
 
 int main(int argc, char *argv[]) {
 	while (true) {
+		signal(SIGINT, SIG_DFL);
 		printf("? ");
 		char input[512];
 		if (fgets(input, 512, stdin) == NULL) {
