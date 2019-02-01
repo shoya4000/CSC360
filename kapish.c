@@ -59,6 +59,7 @@ void freeHistory() {
 }
 
 char* reexecute(char* prefix) {
+	printf("%s\n", prefix);
 	struct node *item = START;
 	int i;
 	for (i = 0; i < historyLength; i++) {
@@ -90,7 +91,7 @@ int main(int argc, char *argv[]) {
 		if (input[0] != '!') {
 			addHistory(input);
 		} else {
-			strcpy(input, reexecute(input));
+			strcpy(input++, reexecute(input));
 		}
 		char *parsed;
 		parsed = strtok(input, " ");
