@@ -28,7 +28,8 @@ void addHistory(char* command) {
 	newNode->the_command = malloc(sizeof * command);
 	strcpy(newNode->the_command, command);
 	struct node *find = START;
-	for (int i = 0; i < pos; i++) {
+	int i;
+	for (i = 0; i < pos; i++) {
 		find = find->next;
 	}
 	newNode->next = find;
@@ -40,7 +41,8 @@ void addHistory(char* command) {
 
 void printHistory() {
 	struct node *item = START;
-	for (int i = 0; i < historyLength; i++) {
+	int i;
+	for (i = 0; i < historyLength; i++) {
 		printf("%s\n", item->the_command);
 		item = item->next;
 	}
@@ -48,7 +50,8 @@ void printHistory() {
 
 void freeHistory() {
 	struct node *item = START;
-	for (int i = 0; i < historyLength; i++) {
+	int i;
+	for (i = 0; i < historyLength; i++) {
 		item = item->next;
 		free(item->prev->the_command);
 		free(item->prev);
