@@ -1,2 +1,5 @@
-kapishmake: kapish.c
-	gcc -o -Wall -Werror kapish kapish.c 
+all: kapish.c
+	gcc -g -o -Wall -Werrorkapish kapish.c
+
+clean: 
+	  $(RM) kapish
