@@ -63,6 +63,7 @@ char* reexecute(char* prefix) {
 	for (i = 0; i < strlen(prefix) - 1; i++) {
 		prefix[i] = prefix[i + 1];
 	}
+	printf("prefix: %s", prefix);
 	struct node *item = START;
 	for (i = 0; i < historyLength; i++) {
 		if (strncmp(prefix, item->the_command, strlen(prefix)) == 0) {
