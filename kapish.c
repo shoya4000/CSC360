@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <errno.h>
 
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
@@ -55,7 +56,8 @@ int main(int argc, char *argv[]) {
 				}
 				pid_t childID = fork();
 				if (childID == 0) {
-					printf("%s", strerror(execvp(argv[0], argv)));
+					execvp(argv[0], argv)
+					printf("%s", strerror(errno));
 				} else {
 					wait(NULL);
 				}
