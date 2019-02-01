@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
 			exit(EXIT_SUCCESS);
 		}
 		removeNewLine(input);
-		addHistory(input);
+		//addHistory(input);
 		char *parsed;
 		parsed = strtok(input, " ");
 		while (parsed != NULL) {
