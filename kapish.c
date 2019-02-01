@@ -57,6 +57,18 @@ void freeHistory() {
 	historyLength--;
 }
 
+char* reexecute(char* prefix) {
+	struct node *item = START;
+	int i;
+	for (i = 0; i < historyLength; i++) {
+		if (strncmp(prefix, item->the_command, strlen(prefix)) == 0) {
+			return item->the_command;
+		}
+		item = item->next;
+	}
+	return "NoPrefix";
+}
+
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
@@ -74,7 +86,11 @@ int main(int argc, char *argv[]) {
 			exit(EXIT_SUCCESS);
 		}
 		removeNewLine(input);
-		addHistory(input);
+		if (input[0] != '!') {
+			addHistory(input);
+		} else {
+			input = reexecute(input);
+		}
 		char *parsed;
 		parsed = strtok(input, " ");
 		while (parsed != NULL) {
@@ -105,6 +121,9 @@ int main(int argc, char *argv[]) {
 			}
 			else if (strncmp(parsed, "history", 512) == 0 ) {
 				printHistory();
+			}
+			else if (strncmp(parsed, "NoPrefix", 512) == 0 ) {
+				printf("No matching prefix");
 			}
 			else {
 				argv[0] = parsed;
