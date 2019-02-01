@@ -1,2 +1,4 @@
-kapishmake: kapish.c
-	gcc -g -o -Wall -Werror kapish kapish.c 
+CC = gcc
+CFLAGS = -o -Wall -Werror kapish kapish.c 
+TARGET=kapish
+all: $(TARGET)
