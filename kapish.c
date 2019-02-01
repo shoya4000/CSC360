@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 				printf("%s", argv[0]);
 				pid_t childID = fork();
 				if (childID == 0) {
-					execvp(parsed);
+					execvp(parsed, argv);
 				} else {
 					wait(NULL);
 				}
