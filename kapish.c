@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <signal.h>
+#include <unistd.h>
 
 void check_mem_fail(const void *a) {
 //check memory allocation succeeded
@@ -80,6 +81,9 @@ void removeNewLine(char* string) {
 }
 
 int main(int argc, char *argv[]) {
+	FILE *infile;
+	infile = fopen(getenv("HOME") + "/.kapishrc", "r");
+
 	while (true) {
 		signal(SIGINT, SIG_DFL);
 		printf("? ");
