@@ -27,10 +27,12 @@ void addHistory(char* command) {
 	check_mem_fail(newNode);
 	newNode->the_command = malloc(sizeof * command);
 	strcpy(newNode->the_command, command);
-	newNode->prev = END;
-	newNode->next = NULL;
-	END->next = newNode;
-	END = newNode;
+	newNode->prev = NULL;
+	newNode->next = START;
+	START = newNode;
+	if (historyLength == 0) {
+		END = newNode;
+	}
 	historyLength++;
 }
 
@@ -73,7 +75,7 @@ int main(int argc, char *argv[]) {
 		}
 		removeNewLine(input);
 		printf("input: %s", input);
-		//addHistory(input);
+		addHistory(input);
 		char *parsed;
 		parsed = strtok(input, " ");
 		while (parsed != NULL) {
