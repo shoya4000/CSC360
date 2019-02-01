@@ -26,6 +26,7 @@ void addHistory(char* command) {
 	struct node *newNode = malloc(sizeof * newNode);
 	check_mem_fail(newNode);
 	newNode->the_command = malloc(sizeof * command);
+	check_mem_fail(newNode->the_command);
 	strcpy(newNode->the_command, command);
 	newNode->prev = NULL;
 	newNode->next = START;
@@ -89,7 +90,7 @@ int main(int argc, char *argv[]) {
 		if (input[0] != '!') {
 			addHistory(input);
 		} else {
-			input = reexecute(input);
+			strcpy(input, reexecute(input));
 		}
 		char *parsed;
 		parsed = strtok(input, " ");
@@ -146,5 +147,6 @@ int main(int argc, char *argv[]) {
 			parsed = strtok(NULL, " ");
 		}
 	}
+	freeHistory();
 	return 0;
 }
