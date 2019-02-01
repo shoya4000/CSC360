@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
 				printHistory();
 			}
 			else if (strncmp(parsed, "NoPrefix", 512) == 0 ) {
-				printf("No matching prefix");
+				printf("No matching prefix\n");
 			}
 			else {
 				argv[0] = parsed;
