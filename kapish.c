@@ -52,7 +52,7 @@ void freeHistory() {
 		struct node *item = START;
 		printf("Freeing: %s\n", item->the_command);
 		if (item->next) {
-			item->next = START;
+			START = item->next;
 		}
 		free(item->the_command);
 		free(item);
