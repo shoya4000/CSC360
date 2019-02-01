@@ -25,7 +25,7 @@ struct node *END = NULL;
 void addHistory(char* command) {
 	struct node *newNode = malloc(sizeof * newNode);
 	check_mem_fail(newNode);
-	newNode->the_command = malloc(sizeof * command);
+	newNode->the_command = malloc(sizeof * strlen(command + 1));
 	check_mem_fail(newNode->the_command);
 	strcpy(newNode->the_command, command);
 	newNode->prev = NULL;
