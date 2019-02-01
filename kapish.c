@@ -60,7 +60,7 @@ void freeHistory() {
 
 char* reexecute(char* prefix) {
 	int i;
-	for (i = 0; i < strlen(prefix) - 1; i++) {
+	for (i = 0; i < strlen(prefix); i++) {
 		prefix[i] = prefix[i + 1];
 	}
 	printf("prefix: %s", prefix);
