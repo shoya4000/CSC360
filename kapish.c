@@ -82,10 +82,10 @@ void removeNewLine(char* string) {
 }
 
 int main(int argc, char *argv[]) {
-	FILE *infile;
+	/*FILE *infile;
 	char* kapishrc = getenv("HOME");
 	strncat(kapishrc, "/.kapishrc", strlen(kapishrc) + strlen("/.kapishrc"));
-	infile = fopen(kapishrc, "r");
+	infile = fopen(kapishrc, "r");*/
 
 	while (true) {
 		signal(SIGINT, SIG_DFL);
