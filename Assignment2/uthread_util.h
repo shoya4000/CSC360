@@ -7,7 +7,7 @@
 #define __uthread_util_h__
 
 struct uthread_queue {
-  uthread_t head, tail;
+	uthread_t head, tail;
 };
 typedef struct uthread_queue uthread_queue_t;
 

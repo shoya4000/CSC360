@@ -15,4 +15,3 @@ void          uthread_sem_wait    (uthread_sem_t);
 void          uthread_sem_signal  (uthread_sem_t);
 
 #endif
-

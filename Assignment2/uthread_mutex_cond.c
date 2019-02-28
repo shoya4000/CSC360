@@ -88,7 +88,7 @@ void uthread_mutex_lock_readonly (uthread_mutex_t mutex) {
 
 void uthread_mutex_unlock (uthread_mutex_t mutex) {
   uthread_t waiter_thread;
-  
+
   spinlock_lock (&mutex->spinlock);
   if (mutex->holder) {
     assert (mutex->holder == uthread_self());
@@ -146,7 +146,7 @@ void uthread_cond_wait (uthread_cond_t cond) {
 
 void uthread_cond_signal (uthread_cond_t cond) {
   uthread_t waiter_thread;
-  
+
   assert (cond->mutex->holder == uthread_self ());
   waiter_thread = uthread_dequeue (&cond->waiter_queue);
   if (waiter_thread)
@@ -159,9 +159,8 @@ void uthread_cond_signal (uthread_cond_t cond) {
 
 void uthread_cond_broadcast (uthread_cond_t cond) {
   uthread_t waiter_thread;
-  
+
   assert (cond->mutex->holder == uthread_self ());
   while ((waiter_thread = uthread_dequeue (&cond->waiter_queue)))
     uthread_unblock (waiter_thread);
 }
-

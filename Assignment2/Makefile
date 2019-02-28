@@ -15,5 +15,3 @@ tidy:
 	rm -f $(JUNKF); rm -rf $(JUNKD)
 clean:
 	rm -f $(JUNKF) $(TARGETS); rm -rf $(JUNKD)
-
-

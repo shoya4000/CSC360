@@ -9,19 +9,19 @@ const int NUM_ITERATIONS = 200;
 const int NUM_CONSUMERS  = 2;
 const int NUM_PRODUCERS  = 2;
 
-int histogram [MAX_ITEMS+1]; // histogram [i] == # of times list stored i items
+int histogram [MAX_ITEMS + 1]; // histogram [i] == # of times list stored i items
 
 int items = 0;
 
 void* producer (void* v) {
-  for (int i=0; i<NUM_ITERATIONS; i++) {
+  for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
   }
   return NULL;
 }
 
 void* consumer (void* v) {
-  for (int i=0; i<NUM_ITERATIONS; i++) {
+  for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
   }
   return NULL;
@@ -35,7 +35,7 @@ int main (int argc, char** argv) {
   // TODO: Create Threads and Join
 
   printf ("items value histogram:\n");
-  int sum=0;
+  int sum = 0;
   for (int i = 0; i <= MAX_ITEMS; i++) {
     printf ("  items=%d, %d times\n", i, histogram [i]);
     sum += histogram [i];
