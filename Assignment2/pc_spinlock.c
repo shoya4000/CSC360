@@ -25,6 +25,7 @@ void* producer (void* v) {
       if (items < MAX_ITEMS) {
         spinlock_lock(&lock);
         items++;
+        histogram[items]++;
         spinlock_unlock(&lock);
       }
     }
@@ -41,6 +42,7 @@ void* consumer (void* v) {
       if (items > 0) {
         spinlock_lock(&lock);
         items--;
+        histogram[items]++;
         spinlock_unlock(&lock);
       }
     }
