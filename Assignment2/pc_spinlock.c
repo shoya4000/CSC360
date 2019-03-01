@@ -56,6 +56,7 @@ int main (int argc, char** argv) {
   uthread_init (4);
 
   // TODO: Create Threads and Join
+  uthread_create(producer, &items)
 
   printf ("producer_wait_count=%d\nconsumer_wait_count=%d\n", producer_wait_count, consumer_wait_count);
   printf ("items value histogram:\n");
