@@ -16,18 +16,17 @@ int histogram [MAX_ITEMS + 1]; // histogram [i] == # of times list stored i item
 
 int items = 0;
 
+spinlock_t lock;
+
 void* producer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
     if (items < MAX_ITEMS) {
-      spinlock_t lock;
-      spinlock_create(&lock);
-      if (items < MAX_ITEMS) {
-        spinlock_lock(&lock);
-        items++;
-        histogram[items]++;
-        spinlock_unlock(&lock);
-      }
+      spinlock_lock(&lock);
+      items++;
+      histogram[items]++;
+      spinlock_unlock(&lock);
+
     }
   }
   return NULL;
@@ -37,14 +36,11 @@ void* consumer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
     if (items > 0) {
-      spinlock_t lock;
-      spinlock_create(&lock);
-      if (items > 0) {
-        spinlock_lock(&lock);
-        items--;
-        histogram[items]++;
-        spinlock_unlock(&lock);
-      }
+      spinlock_lock(&lock);
+      items--;
+      histogram[items]++;
+      spinlock_unlock(&lock);
+
     }
   }
   return NULL;
@@ -56,14 +52,14 @@ int main (int argc, char** argv) {
   uthread_init (4);
 
   // TODO: Create Threads and Join
+  spinlock_create(&lock);
   t[0] = uthread_create(producer, &items);
   t[1] = uthread_create(consumer, &items);
   t[2] = uthread_create(producer, &items);
   t[3] = uthread_create(consumer, &items);
-  uthread_join(t[0], NULL);
-  uthread_join(t[1], NULL);
-  uthread_join(t[2], NULL);
-  uthread_join(t[3], NULL);
+  for (int i = 0; i < 4; i++) {
+    uthread_join(t[i], NULL);
+  }
 
   printf ("producer_wait_count=%d\nconsumer_wait_count=%d\n", producer_wait_count, consumer_wait_count);
   printf ("items value histogram:\n");
