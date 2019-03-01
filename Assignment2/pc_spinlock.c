@@ -19,6 +19,15 @@ int items = 0;
 void* producer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
+    if (items < MAX_ITEMS) {
+      spinlock_t lock;
+      spinlock_create(&lock);
+      if (items < MAX_ITEMS) {
+        spinlock_lock(&lock);
+        item++;
+        spinlock_unlock(&lock)
+      }
+    }
   }
   return NULL;
 }
@@ -26,6 +35,15 @@ void* producer (void* v) {
 void* consumer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
+    if (items > 0) {
+      spinlock_t lock;
+      spinlock_create(&lock);
+      if (items > 0) {
+        spinlock_lock(&lock);
+        item--;
+        spinlock_unlock(&lock)
+      }
+    }
   }
   return NULL;
 }
