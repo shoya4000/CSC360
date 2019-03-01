@@ -60,10 +60,10 @@ int main (int argc, char** argv) {
   t[1] = uthread_create(consumer, &items);
   t[2] = uthread_create(producer, &items);
   t[3] = uthread_create(consumer, &items);
-  uthread_join(t[0], &items);
-  uthread_join(t[1], &items);
-  uthread_join(t[2], &items);
-  uthread_join(t[3], &items);
+  uthread_join(t[0], 0);
+  uthread_join(t[1], 1);
+  uthread_join(t[2], 2);
+  uthread_join(t[3], 3);
 
   printf ("producer_wait_count=%d\nconsumer_wait_count=%d\n", producer_wait_count, consumer_wait_count);
   printf ("items value histogram:\n");
