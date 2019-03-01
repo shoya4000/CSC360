@@ -75,6 +75,6 @@ int main (int argc, char** argv) {
   printf("sum: %d\n", sum);
   printf("sizeof (t): %lu\n", sizeof (t));
   printf("sizeof (uthread_t): %lu\n", sizeof (uthread_t));
-  printf("NUM_ITERATIONS: %lu\n", sizeof (NUM_ITERATIONS));
+  printf("NUM_ITERATIONS: %lu\n", NUM_ITERATIONS);
   assert (sum == sizeof (t) / sizeof (uthread_t) * NUM_ITERATIONS);
 }
