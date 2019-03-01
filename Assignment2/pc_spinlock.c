@@ -24,7 +24,7 @@ void* producer (void* v) {
       spinlock_create(&lock);
       if (items < MAX_ITEMS) {
         spinlock_lock(&lock);
-        item++;
+        items++;
         spinlock_unlock(&lock);
       }
     }
@@ -40,7 +40,7 @@ void* consumer (void* v) {
       spinlock_create(&lock);
       if (items > 0) {
         spinlock_lock(&lock);
-        item--;
+        items--;
         spinlock_unlock(&lock);
       }
     }
