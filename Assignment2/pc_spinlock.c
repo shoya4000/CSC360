@@ -72,7 +72,7 @@ int main (int argc, char** argv) {
     printf ("  items=%d, %d times\n", i, histogram [i]);
     sum += histogram [i];
   }
-  printf("sum: %lu\n", sum);
+  printf("sum: %d\n", sum);
   printf("sizeof (t): %lu\n", sizeof (t));
   printf("sizeof (uthread_t): %lu\n", sizeof (uthread_t));
   printf("NUM_ITERATIONS: %lu\n", sizeof (NUM_ITERATIONS));
