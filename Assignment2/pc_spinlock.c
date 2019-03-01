@@ -72,5 +72,8 @@ int main (int argc, char** argv) {
     printf ("  items=%d, %d times\n", i, histogram [i]);
     sum += histogram [i];
   }
+  printf("sizeof (t): %f\n", sizeof (t));
+  printf("sizeof (uthread_t): %f\n", sizeof (uthread_t));
+  printf("NUM_ITERATIONS: %f\n", sizeof (NUM_ITERATIONS));
   assert (sum == sizeof (t) / sizeof (uthread_t) * NUM_ITERATIONS);
 }
