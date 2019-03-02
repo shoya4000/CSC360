@@ -55,11 +55,11 @@ int main (int argc, char** argv) {
 
   // TODO: Create Threads and Join
   spinlock_t lock;
-  spinlock_create(lock);
-  t[0] = uthread_create(producer, (void *)lock);
-  t[1] = uthread_create(consumer, (void *)lock);
-  t[2] = uthread_create(producer, (void *)lock);
-  t[3] = uthread_create(consumer, (void *)lock);
+  spinlock_create(&lock);
+  t[0] = uthread_create(producer, (void *)&lock);
+  t[1] = uthread_create(consumer, (void *)&lock);
+  t[2] = uthread_create(producer, (void *)&lock);
+  t[3] = uthread_create(consumer, (void *)&lock);
   for (int i = 0; i < 4; i++) {
     uthread_join(t[i], NULL);
   }
