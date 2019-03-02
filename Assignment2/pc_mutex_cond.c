@@ -53,10 +53,10 @@ int main (int argc, char** argv) {
 
   // TODO: Create Threads and Join
   uthread_mutex_t mt;
-  t[0] = uthread_create(producer, (void *)mt);
-  t[1] = uthread_create(consumer, (void *)mt);
-  t[2] = uthread_create(producer, (void *)mt);
-  t[3] = uthread_create(consumer, (void *)mt);
+  t[0] = uthread_create(producer, (void *)&mt);
+  t[1] = uthread_create(consumer, (void *)&mt);
+  t[2] = uthread_create(producer, (void *)&mt);
+  t[3] = uthread_create(consumer, (void *)&mt);
   for (int i = 0; i < 4; i++) {
     uthread_join(t[i], NULL);
   }
