@@ -17,9 +17,9 @@ int histogram [MAX_ITEMS + 1]; // histogram [i] == # of times list stored i item
 int items = 0;
 
 void* producer (void* v) {
+  spinlock_t *lock = (spinlock_t *) v;
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    spinlock_t *lock = (spinlock_t *) v;
     spinlock_lock(lock);
     if (items < MAX_ITEMS) {
       items++;
