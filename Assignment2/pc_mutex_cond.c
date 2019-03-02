@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "uthread.h"
 #include "uthread_mutex_cond.h"
+#include "spinlock.h"
 
 #define MAX_ITEMS 10
 const int NUM_ITERATIONS = 200;
@@ -15,83 +16,67 @@ int histogram [MAX_ITEMS + 1]; // histogram [i] == # of times list stored i item
 
 int items = 0;
 
-struct thread_args {
+struct thread_start_arg {
   uthread_mutex_t lock;
-  uthread_cond_t can_produce;
-  uthread_cond_t can_consume;
+  uthread_cond_t produce;
+  uthread_cond_t consume;
 };
 
 void* producer (void* v) {
-  struct thread_args *args = (struct thread_args*)v;
-  uthread_mutex_t lock = args->lock;
-  uthread_cond_t can_produce = args->can_produce;
-  uthread_cond_t can_consume = args->can_consume;
-
   for (int i = 0; i < NUM_ITERATIONS; i++) {
-    uthread_mutex_lock(lock);
-
+    // TODO
+    struct thread_start_arg *start_arg = (struct thread_start_arg*)v;
+    uthread_mutex_lock(start_arg->lock);
     while (items == MAX_ITEMS) {
-      producer_wait_count += 1;
-      uthread_cond_wait(can_produce);
+      producer_wait_count++;
+      uthread_cond_wait(start_arg->produce);
     }
-
-    items += 1;
-    histogram[items] += 1;
-    uthread_cond_broadcast(can_consume);
-    uthread_mutex_unlock(lock);
+    items++;
+    histogram[items]++;
+    uthread_cond_broadcast(start_arg->consume);
+    uthread_mutex_unlock(start_arg->lock);
   }
   return NULL;
 }
 
 void* consumer (void* v) {
-  struct thread_args *args = (struct thread_args*)v;
-  uthread_mutex_t lock = args->lock;
-  uthread_cond_t can_produce = args->can_produce;
-  uthread_cond_t can_consume = args->can_consume;
-
   for (int i = 0; i < NUM_ITERATIONS; i++) {
-    uthread_mutex_lock(lock);
-
-    while (items == 0) {
-      consumer_wait_count += 1;
-      uthread_cond_wait(can_consume);
+    // TODO
+    struct thread_start_arg *start_arg = (struct thread_start_arg*)v;
+    uthread_mutex_lock(start_arg->lock);
+    while (items == MAX_ITEMS) {
+      consumer_wait_count++;
+      uthread_cond_wait(start_arg->consume);
     }
-
-    items -= 1;
-    histogram[items] += 1;
-    uthread_cond_broadcast(can_produce);
-    uthread_mutex_unlock(lock);
+    items--;
+    histogram[items]++;
+    uthread_cond_broadcast(start_arg->produce);
+    uthread_mutex_unlock(start_arg->lock);
   }
   return NULL;
 }
 
 int main (int argc, char** argv) {
-  int THREAD_COUNT = NUM_CONSUMERS + NUM_PRODUCERS;
+  uthread_t t[4];
 
-  uthread_t t[THREAD_COUNT];
-  uthread_init (THREAD_COUNT);
+  uthread_init (4);
 
-  struct thread_args *args = malloc(sizeof(struct thread_args));
-  args->lock = uthread_mutex_create();
-  args->can_produce = uthread_cond_create(args->lock);
-  args->can_consume = uthread_cond_create(args->lock);
-
-  for (int i = 0; i < THREAD_COUNT; i++) {
-    if (i % 2 == 0) {
-      t[i] = uthread_create(&consumer, args);
-    } else {
-      t[i] = uthread_create(&producer, args);
-    }
-  }
-
-  for (int i = 0; i < THREAD_COUNT; i++) {
+  // TODO: Create Threads and Join
+  struct thread_start_arg *start_arg = malloc(sizeof(struct thread_start_arg));
+  start_arg->lock = uthread_mutex_create();
+  start_arg->produce = uthread_cond_create(start_arg->lock);
+  start_arg->consume = uthread_cond_create(start_arg->lock);
+  t[0] = uthread_create(&producer, start_arg);
+  t[1] = uthread_create(&consumer, start_arg);
+  t[2] = uthread_create(&producer, start_arg);
+  t[3] = uthread_create(&consumer, start_arg);
+  for (int i = 0; i < 4; i++) {
     uthread_join(t[i], NULL);
   }
-
-  uthread_cond_destroy(args->can_produce);
-  uthread_cond_destroy(args->can_consume);
-  uthread_mutex_destroy(args->lock);
-  free(args);
+  uthread_cond_destroy(start_arg->produce);
+  uthread_cond_destroy(start_arg->consume);
+  uthread_mutex_destroy(start_arg->lock);
+  free(start_arg);
 
   printf ("producer_wait_count=%d\nconsumer_wait_count=%d\n", producer_wait_count, consumer_wait_count);
   printf ("items value histogram:\n");
