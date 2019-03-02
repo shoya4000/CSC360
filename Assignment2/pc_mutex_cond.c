@@ -73,6 +73,10 @@ int main (int argc, char** argv) {
   for (int i = 0; i < 4; i++) {
     uthread_join(t[i], NULL);
   }
+  uthread_cond_destroy(start_arg->produce);
+  uthread_cond_destroy(start_arg->consume);
+  uthread_mutex_destroy(start_arg->lock);
+  free(start_arg);
 
   printf ("producer_wait_count=%d\nconsumer_wait_count=%d\n", producer_wait_count, consumer_wait_count);
   printf ("items value histogram:\n");
