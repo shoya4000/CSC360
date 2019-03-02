@@ -66,10 +66,10 @@ int main (int argc, char** argv) {
   start_arg->lock = uthread_mutex_create();
   start_arg->produce = uthread_cond_create(start_arg->lock);
   start_arg->consume = uthread_cond_create(start_arg->lock);
-  t[0] = uthread_create(producer, start_arg);
-  t[1] = uthread_create(consumer, start_arg);
-  t[2] = uthread_create(producer, start_arg);
-  t[3] = uthread_create(consumer, start_arg);
+  t[0] = uthread_create(&producer, start_arg);
+  t[1] = uthread_create(&consumer, start_arg);
+  t[2] = uthread_create(&producer, start_arg);
+  t[3] = uthread_create(&consumer, start_arg);
   for (int i = 0; i < 4; i++) {
     uthread_join(t[i], NULL);
   }
