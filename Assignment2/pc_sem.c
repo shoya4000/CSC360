@@ -28,7 +28,7 @@ void* producer (void* v) {
     items++;
     histogram[items]++;
     uthread_sem_signal(start_arg->lock);
-    uthread_sem_signal(start_arg->consumer);
+    uthread_sem_signal(start_arg->consume);
   }
   return NULL;
 }
@@ -55,7 +55,7 @@ int main (int argc, char** argv) {
   // TODO: Create Threads and Join
   struct thread_start_arg *start_arg = malloc(sizeof(struct thread_start_arg));
   start_arg->lock = uthread_sem_create(1);
-  start_arg->produce = uthread_cond_create(MAX_ITEMS);
+  start_arg->produce = uthread_sem_create(MAX_ITEMS);
   start_arg->consume = uthread_sem_create(0);
   t[0] = uthread_create(&producer, start_arg);
   t[1] = uthread_create(&consumer, start_arg);
