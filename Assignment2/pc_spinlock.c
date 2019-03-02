@@ -23,10 +23,10 @@ void* producer (void* v) {
     // TODO
     if (items < MAX_ITEMS) {
       spinlock_lock(&lock);
+      printf("produce\n");
       items++;
       histogram[items]++;
       spinlock_unlock(&lock);
-
     }
   }
   return NULL;
@@ -37,10 +37,10 @@ void* consumer (void* v) {
     // TODO
     if (items > 0) {
       spinlock_lock(&lock);
+      printf("consume\n");
       items--;
       histogram[items]++;
       spinlock_unlock(&lock);
-
     }
   }
   return NULL;
