@@ -25,15 +25,16 @@ struct thread_start_arg {
 void* producer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    uthread_mutex_lock(v->lock);
+    struct thread_start_arg *thread_start_arg = (struct thread_start_arg*)v;
+    uthread_mutex_lock(thread_start_arg->lock);
     while (items == MAX_ITEMS) {
       producer_wait_count++;
-      uthread_cond_wait(v->produce);
+      uthread_cond_wait(thread_start_arg->produce);
     }
     items++;
     histogram[items]++;
-    uthread_cond_broadcast(v->consume);
-    uthread_mutex_unlock(v->lock);
+    uthread_cond_broadcast(thread_start_arg->consume);
+    uthread_mutex_unlock(thread_start_arg->lock);
   }
   return NULL;
 }
@@ -41,15 +42,16 @@ void* producer (void* v) {
 void* consumer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    uthread_mutex_lock(v->lock);
+    struct thread_start_arg *thread_start_arg = (struct thread_start_arg*)v;
+    uthread_mutex_lock(thread_start_arg->lock);
     while (items == MAX_ITEMS) {
       consumer_wait_count++;
-      uthread_cond_wait(v->consume);
+      uthread_cond_wait(thread_start_arg->consume);
     }
     items--;
     histogram[items]++;
-    uthread_cond_broadcast(v->produce);
-    uthread_mutex_unlock(v->lock);
+    uthread_cond_broadcast(thread_start_arg->produce);
+    uthread_mutex_unlock(thread_start_arg->lock);
   }
   return NULL;
 }
