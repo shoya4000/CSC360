@@ -19,7 +19,7 @@ int items = 0;
 void* producer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    uthread_mutex_t lock = uthread_cond_create(*v);
+    uthread_mutex_t lock = uthread_cond_create(v);
     uthread_mutex_lock(lock);
     if (items < MAX_ITEMS) {
       items++;
@@ -35,7 +35,7 @@ void* producer (void* v) {
 void* consumer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    uthread_mutex_t lock = uthread_cond_create(*v);
+    uthread_mutex_t lock = uthread_cond_create(v);
     uthread_mutex_lock(lock);
     if (items > 0) {
       items--;
@@ -55,10 +55,10 @@ int main (int argc, char** argv) {
 
   // TODO: Create Threads and Join
   uthread_mutex_t mt;
-  t[0] = uthread_create(producer, (void *)&mt);
-  t[1] = uthread_create(consumer, (void *)&mt);
-  t[2] = uthread_create(producer, (void *)&mt);
-  t[3] = uthread_create(consumer, (void *)&mt);
+  t[0] = uthread_create(producer, (void *)mt);
+  t[1] = uthread_create(consumer, (void *)mt);
+  t[2] = uthread_create(producer, (void *)mt);
+  t[3] = uthread_create(consumer, (void *)mt);
   for (int i = 0; i < 4; i++) {
     uthread_join(t[i], NULL);
   }
