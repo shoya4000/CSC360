@@ -19,7 +19,7 @@ int items = 0;
 void* producer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    uthread_mutex_t lock = uthread_cond_create(v);
+    uthread_mutex_t lock = uthread_cond_create(*v);
     uthread_mutex_lock(lock);
     if (items < MAX_ITEMS) {
       items++;
@@ -35,7 +35,7 @@ void* producer (void* v) {
 void* consumer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    uthread_mutex_t lock = uthread_cond_create(v);
+    uthread_mutex_t lock = uthread_cond_create(*v);
     uthread_mutex_lock(lock);
     if (items > 0) {
       items--;
