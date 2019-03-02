@@ -19,14 +19,15 @@ int items = 0;
 void* producer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    spinlock_lock(&lock);
+    spinlock_t *lock = (spinlock_t *) v;
+    spinlock_lock(lock);
     if (items < MAX_ITEMS) {
       items++;
     } else {
       producer_wait_count++;
     }
     histogram[items]++;
-    spinlock_unlock(&lock);
+    spinlock_unlock(lock);
   }
   return NULL;
 }
@@ -34,14 +35,15 @@ void* producer (void* v) {
 void* consumer (void* v) {
   for (int i = 0; i < NUM_ITERATIONS; i++) {
     // TODO
-    spinlock_lock(&lock);
+    spinlock_t *lock = (spinlock_t *) v;
+    spinlock_lock(lock);
     if (items > 0) {
       items--;
     } else {
       consumer_wait_count++;
     }
     histogram[items]++;
-    spinlock_unlock(&lock);
+    spinlock_unlock(lock);
   }
   return NULL;
 }
