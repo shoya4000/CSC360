@@ -44,7 +44,7 @@ void* consumer (void* v) {
     // TODO
     struct thread_start_arg *start_arg = (struct thread_start_arg*)v;
     uthread_mutex_lock(start_arg->lock);
-    while (items == MAX_ITEMS) {
+    while (items == 0) {
       consumer_wait_count++;
       uthread_cond_wait(start_arg->consume);
     }
