@@ -41,7 +41,7 @@ void* consumer (void* v) {
       consumer_wait_count++;
     }
     histogram[items]++;
-    uthread_mutex_unlock(lock);
+    uthread_mutex_unlock(v);
   }
   return NULL;
 }
