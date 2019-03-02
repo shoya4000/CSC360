@@ -56,10 +56,10 @@ int main (int argc, char** argv) {
   // TODO: Create Threads and Join
   spinlock_t lock;
   spinlock_create(&lock);
-  t[0] = uthread_create(&producer, (void *)&lock);
-  t[1] = uthread_create(&consumer, (void *)&lock);
-  t[2] = uthread_create(&producer, (void *)&lock);
-  t[3] = uthread_create(&consumer, (void *)&lock);
+  t[0] = uthread_create(producer, (void *)&lock);
+  t[1] = uthread_create(consumer, (void *)&lock);
+  t[2] = uthread_create(producer, (void *)&lock);
+  t[3] = uthread_create(consumer, (void *)&lock);
   for (int i = 0; i < 4; i++) {
     uthread_join(t[i], NULL);
   }
@@ -71,10 +71,5 @@ int main (int argc, char** argv) {
     printf ("  items=%d, %d times\n", i, histogram [i]);
     sum += histogram [i];
   }
-  printf("sum: %d\n", sum);
-  printf("sizeof (t): %lu\n", sizeof (t));
-  printf("sizeof (uthread_t): %lu\n", sizeof (uthread_t));
-  printf("NUM_ITERATIONS: %d\n", NUM_ITERATIONS);
-  printf("sizeof (t) / sizeof (uthread_t) * NUM_ITERATIONS: %lu", (sizeof (t) / sizeof (uthread_t) * NUM_ITERATIONS));
   assert (sum == sizeof (t) / sizeof (uthread_t) * NUM_ITERATIONS);
 }
