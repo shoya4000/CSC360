@@ -1,9 +1,6 @@
 #!/bin/bash
 
 cd ~
-rm -r disk; mkdir disk
-rm -r io; mkdir io
-rm -r apps; mkdir apps
-
-cd disk
-ls
+rm -r disk
+rm -r io
+rm -r apps
