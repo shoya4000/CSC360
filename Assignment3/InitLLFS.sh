@@ -1,5 +1,3 @@
 #!/bin/bash
 
-mkdir disk
-mkdir io
-mkdir apps
+rm -r disk; mkdir disk
