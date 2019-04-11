@@ -13,7 +13,7 @@ void initLLFS(FILE* disk) {
 	char superBlockInit[12];
 	printf("%x%x", MAGIC_NUMBER, NUM_BLOCKS);
 	sprintf(superBlockInit, "%x%x", MAGIC_NUMBER, NUM_BLOCKS);
-	printf(superBlockInit);
+	printf("%s", superBlockInit);
 	writeBlock(disk, 0, superBlockInit, strlen(superBlockInit));
 }
 
