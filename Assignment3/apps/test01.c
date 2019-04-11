@@ -25,6 +25,8 @@ int main(int argc, char* argv[]) {
 	char* buffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 0, buffer);
 	printf("%s\n", buffer);
+	free(buffer);
+	int* buffer = (char*)malloc(NUM_BLOCKS);
 	readBlock(disk, 1, buffer);
 	printf("Confirming blocks 0-9 reserved\n");
 	int i;
