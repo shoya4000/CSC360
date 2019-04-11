@@ -11,7 +11,7 @@ const int INODE_SIZE = 32;
 const int INODE_COUNT = 2048;
 
 struct Super {
-	int magNum, blockNum, inodeNum, inodeHead;
+	int mag, blocks, inodes, head;
 };
 
 void initLLFS(FILE* disk) {
