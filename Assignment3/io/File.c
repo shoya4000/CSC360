@@ -29,9 +29,9 @@ void initLLFS(FILE* disk) {
 	for (i = NUM_BLOCKS - 1; i >= 10; i--) {
 		SetBit(freeBlocks, i);
 	}
-	printf("%d", TestBit(freeBlocks, 9));
-	//memset(freeBlocks + 1 , 0x3f, 1);
-	//memset(freeBlocks + 2, 0xff, BLOCK_SIZE - 2);
+	for (i = 0; i <= 12; i++) {
+		printf("printing bit %d: %d", i, TestBit(freeBlocks, i))
+	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 }
 
