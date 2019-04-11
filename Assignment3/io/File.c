@@ -18,7 +18,7 @@ void initLLFS(FILE* disk) {
 	struct Superblock super = {
 		.magic = MAGIC_NUMBER
 	};
-	writeBlock(disk, 0, &MAGIC_NUMBER, sizeof(super));
+	writeBlock(disk, 0, &super, sizeof(super));
 }
 
 char* createEmptyInode() {
