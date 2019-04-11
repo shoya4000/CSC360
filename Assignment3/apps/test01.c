@@ -5,6 +5,7 @@
 
 #include <Disk.h>
 #include <File.h>
+#include <BitOps.h>
 
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {

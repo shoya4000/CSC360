@@ -5,6 +5,7 @@
 
 #include <File.h>
 #include <Disk.h>
+#include <BitOps.h>
 
 const int MAGIC_NUMBER = 0x6b6f6d61;
 const int INODE_SIZE = 32;

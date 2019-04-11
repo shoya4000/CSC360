@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -g -Wall -Werror -Iio -Idisk
-DEPS = io/File.h disk/Dish.h
+DEPS = io/File.h disk/Dish.h io/BitOps.h
 OBJ = io/File.o disk/Disk.o
 
 %.o: %.c $(DEPS)
