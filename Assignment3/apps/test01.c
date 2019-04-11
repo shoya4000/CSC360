@@ -13,43 +13,21 @@ void removeNewLine(char* string) {
 }
 
 int main(int argc, char* argv[]) {
-	while (true) {
-		printf("0_o ");
-		char input[512];
-		if (fgets(input, 512, stdin) == NULL) {
-			printf("\n");
-			exit(EXIT_SUCCESS);
-		}
-		removeNewLine(input);
-		char *parsed;
-		parsed = strtok(input, " ");
-		while (parsed != NULL) {
-			if (strncmp(parsed, "InitLLFS", 512) == 0 ) {
-				createDisk();
-				break;
-			}
-			else if (strncmp(parsed, "read", 512) == 0 ) {
-				int block = atoi(strtok(NULL, " "));
-				char* buffer = (char*)malloc(512);
-				readBlock(block, buffer);
-				int i;
-				for (i = 0; i < 512; i++) {
-					printf("%2x ", buffer[i]);
-				}
-				printf("\n");
-				free(buffer);
-				printf("wut\n");
-				break;
-			}
-			else if (strncmp(parsed, "hello", 512) == 0 ) {
-				helloWorld();
-				break;
-			}
-			else if (strncmp(parsed, "exit", 512) == 0 ) {
-				exit(EXIT_SUCCESS);
-			}
-			parsed = strtok(NULL, " ");
-		}
+	printf("Initializing LLFS\n");
+	createDisk();
+	printf("Accessing vdisk\n");
+	FILE* disk = fopen("vdisk", "rb+");
+	printf("Reading block 0\n");
+	char* buffer = (char*)malloc(BLOCK_SIZE);
+	readBlock(disk, 0, buffer);
+	int i;
+	for (i = 0; i < BLOCK_SIZE; i++) {
+		printf("%2x ", buffer[i]);
 	}
+	printf("\n");
+	free(buffer);
+	fclose(disk);
+	printf("Calling helloworld from File.c");
+	helloWorld();
 	return 0;
 }

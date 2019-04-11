@@ -1,3 +1,3 @@
 void createDisk();
-void writeBlock(int, char*, int);
-void readBlock(int, char*);
+void writeBlock(FILE*, int, char*, int);
+void readBlock(FILE*, int, char*);
