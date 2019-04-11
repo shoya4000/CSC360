@@ -29,6 +29,8 @@ int main(int argc, char* argv[]) {
 			exit(EXIT_SUCCESS);
 		}
 		removeNewLine(input);
+		char *parsed;
+		parsed = strtok(input, " ");
 		while (parsed != NULL) {
 			if (strncmp(parsed, "InitLLFS", 512) == 0 ) {
 				createDisk();
