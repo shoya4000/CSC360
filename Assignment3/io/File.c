@@ -13,18 +13,15 @@ const int INODE_COUNT = 2048;
 struct Super {
 	int mag, blocks, inodes, head;
 };
-struct FreeBlockVector {
-	unsigned int superBlock : 1, freeBlocks : 1, reservedBlocks : 8, rest : 8;
-};
 
 void initLLFS(FILE* disk) {
 	struct Super superInit = {
 		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
-	char* freeBlocks = malloc(BLOCK_SIZE - 10);
-	memset(freeBlocks, 1, BLOCK_SIZE - 10);
-	writeBlock(disk, 1, freeBlocks, BLOCK_SIZE);
+	char* freeBlocks = malloc(BLOCK_SIZE);
+	memset(freeBlocks, 1, BLOCK_SIZE);
+	writeBlock(disk, 1, freeBlocks + 10, BLOCK_SIZE);
 }
 
 char* createEmptyInode() {
