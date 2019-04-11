@@ -24,14 +24,14 @@ void initLLFS(FILE* disk) {
 		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
-	char* freeBlocks = calloc(BLOCK_SIZE, 1);
+	char* freeBlocks = calloc(NUM_BLOCKS, 1);
 	int i;
 	for (i = 9; i < NUM_BLOCKS; i++) {
 		SetBit(freeBlocks, i);
 	}
 	//memset(freeBlocks + 1 , 0x3f, 1);
 	//memset(freeBlocks + 2, 0xff, BLOCK_SIZE - 2);
-	writeBlock(disk, 1, freeBlocks, BLOCK_SIZE);
+	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 }
 
 char* createEmptyInode() {
