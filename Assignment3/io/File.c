@@ -15,7 +15,7 @@ struct Super {
 };
 struct FreeBlockVector {
 	unsigned int superBlock, freeBlocks, reservedBlocks, rest;
-}
+};
 
 void initLLFS(FILE* disk) {
 	struct Super superInit = {
