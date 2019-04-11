@@ -15,7 +15,7 @@ void initLLFS(FILE* disk) {
 	printf("%c", MAGIC_NUMBER);
 	sprintf(superBlockInit, "%x%x", MAGIC_NUMBER, NUM_BLOCKS);
 	printf("%s", superBlockInit);
-	writeBlock(disk, 0, superBlockInit, strlen(superBlockInit));
+	writeBlock(disk, 0, NUM_BLOCKS, strlen(superBlockInit));
 }
 
 char* createEmptyInode() {
