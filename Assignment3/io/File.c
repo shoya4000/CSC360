@@ -30,7 +30,7 @@ void initLLFS(FILE* disk) {
 		SetBit(freeBlocks, i);
 	}
 	for (i = 0; i <= 12; i++) {
-		printf("printing bit %d: %d", i, TestBit(freeBlocks, i))
+		printf("printing bit %d: %d\n", i, TestBit(freeBlocks, i));
 	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 }
