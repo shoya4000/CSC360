@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Wall -Werror
+CFLAGS = -g -Wall -Werror -I
 DEPS = io/File.h disk/Dish.h
 OBJ = io/File.o disk/Disk.o
 
