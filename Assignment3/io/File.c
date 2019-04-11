@@ -24,7 +24,7 @@ void initLLFS(FILE* disk) {
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
 	char* freeBlocks = malloc(BLOCK_SIZE - 10);
 	memset(freeBlocks, 1, BLOCK_SIZE - 10);
-	writeBlock(disk, 1, freeBlocks, sizeof(freeBlocks));
+	writeBlock(disk, 1, freeBlocks, BLOCK_SIZE);
 }
 
 char* createEmptyInode() {
