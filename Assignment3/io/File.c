@@ -7,9 +7,11 @@
 #include <Disk.h>
 
 const int INODE_SIZE = 32;
+const int MAGIC_NUMBER = 0x616d6f6b
 
 void initLLFS(FILE* disk) {
-	writeBlock(disk, 0, "amok%d", NUM_BLOCKS, strlen("amok") * 2);
+	char* superBlockInit = atoa(0x616d6f6b) + atoa(NUM_BLOCKS);
+	writeBlock(disk, 0, superBlockInit, strlen("amok") * 2);
 }
 
 char* createEmptyInode() {
