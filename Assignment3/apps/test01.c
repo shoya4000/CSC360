@@ -6,6 +6,8 @@
 #include <Disk.h>
 #include <File.h>
 
+const int BLOCK_SIZE = 512;
+
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
@@ -28,7 +30,14 @@ int main(int argc, char* argv[]) {
 				createDisk();
 				break;
 			}
-			if (strncmp(parsed, "hello", 512) == 0 ) {
+			else if (strncmp(parsed, "read", 512) == 0 ) {
+				int block = atoi(strtok(NULL, " "));
+				char* buffer = (char*)malloc(BLOCK_SIZE);
+				readBlock(block, buffer);
+				printf("%s", buffer);
+				break;
+			}
+			else if (strncmp(parsed, "hello", 512) == 0 ) {
 				helloWorld();
 				break;
 			}
