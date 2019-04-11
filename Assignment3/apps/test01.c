@@ -17,6 +17,8 @@ int main(int argc, char* argv[]) {
 	createDisk();
 	printf("Accessing vdisk\n");
 	FILE* disk = fopen("vdisk", "rb+");
+	printf("Initializing LLFS\n");
+	initLLFS(disk);
 	printf("Reading block 0\n");
 	char* buffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 0, buffer);
