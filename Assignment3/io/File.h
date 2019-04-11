@@ -1,4 +1,4 @@
 int INODE_SIZE;
 
-void initLLFS(File*);
+void initLLFS(FILE*);
 char* createEmptyInode();

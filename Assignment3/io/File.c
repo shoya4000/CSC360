@@ -9,7 +9,7 @@
 const int INODE_SIZE = 32;
 
 void initLLFS(FILE* disk) {
-	writeBlock(disk, 0, "amok", len("amok"));
+	writeBlock(disk, 0, "amok", strlen("amok"));
 }
 
 char* createEmptyInode() {
