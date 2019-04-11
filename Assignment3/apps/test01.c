@@ -6,6 +6,8 @@
 #include <Disk.h>
 #include <File.h>
 
+#define TestBit(A,k)    ( A[(k/32)] & (1 << (k%32)) )
+
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
@@ -23,6 +25,15 @@ int main(int argc, char* argv[]) {
 	char* buffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 0, buffer);
 	printf("%s\n", buffer);
+	readBlock(disk, 1, buffer);
+	printf("Confirming blocks 0-9 reserved\n");
+	for (i = 0; i < 10; i++) {
+		if (TestBit(buffer, i) != 0) {
+			printf("Error in block reservation\n");
+			exit(0);
+		}
+		printf("printing bit %d: %d\n", i, TestBit(buffer, i) != 0);
+	}
 	free(buffer);
 	fclose(disk);
 	return 0;
