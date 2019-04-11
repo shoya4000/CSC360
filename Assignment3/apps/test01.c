@@ -6,8 +6,6 @@
 #include <Disk.h>
 #include <File.h>
 
-const int BLOCK_SIZE = 512;
-
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
