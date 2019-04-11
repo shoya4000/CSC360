@@ -34,8 +34,9 @@ void initLLFS(FILE* disk) {
 		SetBit(freeBlocks, i);
 	}
 	printf("Confirming blocks 0-9 reserved\n");
-	for (i = 0; i <= 10; i++) {
+	for (i = 0; i < 10; i++) {
 		if (TestBit(freeBlocks, i) != 0) {
+			printf("Ding\n");
 			printf("Error in block reservation\n");
 			exit(0);
 		}
