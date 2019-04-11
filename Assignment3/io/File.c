@@ -6,10 +6,10 @@
 #include <File.h>
 #include <Disk.h>
 
-//macros below from https://stackoverflow.com/questions/2525310/how-to-define-and-work-with-an-array-of-bits-in-c
-#define SetBit(A,k)     ( A[(k/32)] |= (1 << (k%32)) )
-#define ClearBit(A,k)   ( A[(k/32)] &= ~(1 << (k%32)) )
-#define TestBit(A,k)    ( A[(k/32)] & (1 << (k%32)) )
+//macros below from https://stackoverflow.com/a/30590727
+#define SetBit(A,k)     ( A[(k/16)] |= (1 << (k%16)) )
+#define ClearBit(A,k)   ( A[(k/16)] &= ~(1 << (k%16)) )
+#define TestBit(A,k)    ( A[(k/16)] & (1 << (k%16)) )
 
 const int MAGIC_NUMBER = 0x6b6f6d61;
 const int INODE_SIZE = 32;
