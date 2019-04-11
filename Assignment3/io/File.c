@@ -11,12 +11,12 @@ const int INODE_SIZE = 32;
 const int INODE_COUNT = 2048;
 
 struct Superblock {
-	int magic;
+	int magNum, blockNum, inodeNum, inodeHead;
 };
 
 void initLLFS(FILE* disk) {
 	struct Superblock super = {
-		.magic = MAGIC_NUMBER
+		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
 	writeBlock(disk, 0, &super, sizeof(super));
 }
