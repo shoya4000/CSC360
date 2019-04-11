@@ -9,6 +9,10 @@ const int NUM_BLOCKS = 4096;
 void createDisk() {
 	FILE* disk = fopen("vdisk", "wb");
 	char* init = calloc(BLOCK_SIZE * NUM_BLOCKS, 1);
+	if (!init) {
+		printf("Memory allocation for Disk Initialization failed\n");
+		exit(0);
+	}
 	fwrite(init, BLOCK_SIZE * NUM_BLOCKS, 1, disk);
 	fclose(disk);
 }

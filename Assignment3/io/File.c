@@ -22,7 +22,7 @@ void initLLFS(FILE* disk) {
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
 	if (!freeBlocks) {
-		printf("Memory allocation failed\n");
+		printf("Memory allocation for Free Block Vector failed\n");
 		exit(0);
 	}
 	int i;
