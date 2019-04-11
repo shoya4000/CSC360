@@ -5,5 +5,5 @@
 #include <Disk.h>
 
 void helloWorld() {
-	printf("helloWorld\n");
+	printf("%d\n", BLOCK_SIZE);
 }
