@@ -22,10 +22,6 @@ int main(int argc, char* argv[]) {
 	printf("Reading block 0\n");
 	char* buffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 0, buffer);
-	/*int i;
-	for (i = 0; i < BLOCK_SIZE; i++) {
-		printf("%2x ", buffer[i]);
-	}*/
 	printf("%s\n", buffer);
 	free(buffer);
 	fclose(disk);
