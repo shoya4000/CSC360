@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 				char* buffer = (char*)malloc(512);
 				readBlock(block, buffer);
 				int i;
-				for (i = 0; i < BLOCK_SIZE; i++) {
+				for (i = 0; i < 512; i++) {
 					printf("%2x ", buffer[i]);
 				}
 				printf("\n");
