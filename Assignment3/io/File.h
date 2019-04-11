@@ -1,1 +1,1 @@
-void newDisk();
+void helloWorld();

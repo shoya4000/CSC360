@@ -4,6 +4,7 @@
 #include <stdbool.h>
 
 #include <Disk.h>
+#include <File.h>
 
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
@@ -25,6 +26,10 @@ int main(int argc, char* argv[]) {
 		while (parsed != NULL) {
 			if (strncmp(parsed, "InitLLFS", 512) == 0 ) {
 				createDisk();
+				break;
+			}
+			if (strncmp(parsed, "hello", 512) == 0 ) {
+				helloWorld();
 				break;
 			}
 			else if (strncmp(parsed, "exit", 512) == 0 ) {
