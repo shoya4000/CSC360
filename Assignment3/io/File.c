@@ -33,15 +33,6 @@ void initLLFS(FILE* disk) {
 	for (i = NUM_BLOCKS - 1; i >= 10; i--) {
 		SetBit(freeBlocks, i);
 	}
-	printf("Confirming blocks 0-9 reserved\n");
-	for (i = 0; i < 10; i++) {
-		if (TestBit(freeBlocks, i) != 0) {
-			printf("Ding\n");
-			printf("Error in block reservation\n");
-			exit(0);
-		}
-		//printf("printing bit %d: %d\n", i, TestBit(freeBlocks, i) != 0);
-	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 }
 

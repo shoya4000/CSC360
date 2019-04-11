@@ -37,6 +37,14 @@ int main(int argc, char* argv[]) {
 		}
 		printf("printing bit %d: %d\n", i, TestBit(buffer2, i) != 0);
 	}
+	printf("Confirming blocks 10-4095 reserved\n");
+	for (i = 10; i < NUM_BLOCKS; i++) {
+		if (!TestBit(buffer2, i) != 0) {
+			printf("Error in block reservation\n");
+			exit(0);
+		}
+		printf("printing bit %d: %d\n", i, TestBit(buffer2, i) != 0);
+	}
 	free(buffer);
 	fclose(disk);
 	return 0;
