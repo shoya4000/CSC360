@@ -10,7 +10,8 @@ const int INODE_SIZE = 32;
 const int MAGIC_NUMBER = 0x616d6f6b;
 
 void initLLFS(FILE* disk) {
-	char* superBlockInit = itoa(MAGIC_NUMBER) + itoa(NUM_BLOCKS);
+	char* superBlockInit[8];
+	sprintf(superBlockInit, "%d%d", MAGIC_NUMBER, NUM_BLOCKS);
 	writeBlock(disk, 0, superBlockInit, strlen("amok") * 2);
 }
 
