@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
 	for (i = 0; i < BLOCK_SIZE; i++) {
 		printf("%2x ", buffer[i]);
 	}
-	printf("\n");
+	printf("%s\n", buffer);
 	free(buffer);
 	fclose(disk);
 	return 0;
