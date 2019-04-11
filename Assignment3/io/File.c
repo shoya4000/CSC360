@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
 const int BLOCK_SIZE = 512;
 const int NUM_BLOCKS = 4096;
 
