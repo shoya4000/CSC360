@@ -33,6 +33,7 @@ int main(int argc, char* argv[]) {
 				char* buffer = (char*)malloc(512);
 				readBlock(block, buffer);
 				printf("%s", buffer);
+				printf("wut");
 				break;
 			}
 			else if (strncmp(parsed, "hello", 512) == 0 ) {
