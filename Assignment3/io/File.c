@@ -10,7 +10,7 @@ const int INODE_SIZE = 32;
 const int MAGIC_NUMBER = 0x616d6f6b;
 
 struct Superblock {
-	int_t magic;
+	uint32_t magic;
 }
 
 void initLLFS(FILE* disk) {
