@@ -1,2 +1,7 @@
-tests: test01.c test02.c
-	gcc -o tests test01.c test02.c -g -Wall -Werror
+all: test01 test02
+
+test01: test01.c
+	gcc -o test01 test01.c -g -Wall -Werror
+
+test01: test02.c
+	gcc -o test02 test02.c -g -Wall -Werror
