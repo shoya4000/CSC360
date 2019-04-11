@@ -19,9 +19,9 @@ void initLLFS(FILE* disk) {
 		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
-	char* freeBlocks = malloc(BLOCK_SIZE);
-	memset(freeBlocks, 1, BLOCK_SIZE);
-	writeBlock(disk, 1, freeBlocks + 10, BLOCK_SIZE);
+	char* freeBlocks = calloc(BLOCK_SIZE, 1);
+	memset(freeBlocks + 10, 0xf, BLOCK_SIZE - 10);
+	writeBlock(disk, 1, freeBlocks, BLOCK_SIZE);
 }
 
 char* createEmptyInode() {
