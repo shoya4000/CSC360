@@ -29,7 +29,5 @@ int main(int argc, char* argv[]) {
 	printf("\n");
 	free(buffer);
 	fclose(disk);
-	printf("Calling helloworld from File.c\n");
-	helloWorld();
 	return 0;
 }
