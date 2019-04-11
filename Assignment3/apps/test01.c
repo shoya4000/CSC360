@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include <File.h>
+
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
