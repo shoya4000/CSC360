@@ -27,6 +27,7 @@ int main(int argc, char* argv[]) {
 	printf("%s\n", buffer);
 	readBlock(disk, 1, buffer);
 	printf("Confirming blocks 0-9 reserved\n");
+	int i;
 	for (i = 0; i < 10; i++) {
 		if (TestBit(buffer, i) != 0) {
 			printf("Error in block reservation\n");
