@@ -3,4 +3,4 @@ const int NUM_BLOCKS;
 
 void createDisk();
 void writeBlock(FILE*, int, void*, int);
-void readBlock(FILE*, int, char*);
+void readBlock(FILE*, int, void*);

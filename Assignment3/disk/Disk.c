@@ -18,7 +18,7 @@ void writeBlock(FILE* disk, int blockNum, void* data, int size) {
 	fwrite(data, size, 1, disk);
 }
 
-void readBlock(FILE* disk, int blockNum, char* buffer) {
+void readBlock(FILE* disk, int blockNum, void* buffer) {
 	fseek(disk, blockNum * BLOCK_SIZE, SEEK_SET);
 	fread(buffer, BLOCK_SIZE, 1, disk);
 }
