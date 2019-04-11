@@ -6,8 +6,6 @@
 #include <Disk.h>
 #include <File.h>
 
-const int BLOCK_SIZE = 512;
-
 void removeNewLine(char* string) {
 	if (string[strlen(string) - 1] == '\n') {
 		string[strlen(string) - 1] = '\0';
@@ -32,7 +30,7 @@ int main(int argc, char* argv[]) {
 			}
 			else if (strncmp(parsed, "read", 512) == 0 ) {
 				int block = atoi(strtok(NULL, " "));
-				char* buffer = (char*)malloc(BLOCK_SIZE);
+				char* buffer = (char*)malloc(512);
 				readBlock(block, buffer);
 				printf("%s", buffer);
 				break;
