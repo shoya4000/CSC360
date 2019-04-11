@@ -25,7 +25,7 @@ void initLLFS(FILE* disk) {
 	struct FreeBlockVector freeBlocks = {
 		0, 0, 0, 0xf
 	};
-	writeBlock(disk, 1, &freeBlocks, sizeof(superInit));
+	writeBlock(disk, 1, &freeBlocks, sizeof(freeBlocks));
 }
 
 char* createEmptyInode() {
