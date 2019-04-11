@@ -7,7 +7,7 @@
 #include <Disk.h>
 
 const int INODE_SIZE = 32;
-const int MAGIC_NUMBER = 0x616d6f6b;
+const int MAGIC_NUMBER = 0x6b6f6d61;
 
 struct Superblock {
 	uint32_t magic;
