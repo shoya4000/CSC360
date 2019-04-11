@@ -11,7 +11,7 @@ const int MAGIC_NUMBER = 0x616d6f6b;
 
 struct Superblock {
 	uint32_t magic;
-}
+};
 
 void initLLFS(FILE* disk) {
 	struct Superblock super = {
