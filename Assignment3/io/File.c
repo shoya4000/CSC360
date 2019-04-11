@@ -14,7 +14,7 @@ struct Super {
 	int mag, blocks, inodes, head;
 };
 struct FreeBlockVector {
-	unsigned int superBlock, freeBlocks, reservedBlocks, rest;
+	unsigned int superBlock : 1, freeBlocks : 1, reservedBlocks : 8, rest : 8;
 };
 
 void initLLFS(FILE* disk) {
@@ -23,7 +23,7 @@ void initLLFS(FILE* disk) {
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
 	struct FreeBlockVector {
-		0 : 1, 0 : 1, 0 : 8, 0xf : 8
+		0, 0, 0, 0xf
 	};
 }
 
