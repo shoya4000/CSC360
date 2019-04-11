@@ -1,5 +1,2 @@
-all: File.c
-	gcc -g -o -Wall -Werror all File.c
-
-clean: 
-	  $(RM) all
+File: File.c
+	gcc -g -o -Wall -Werror File File.c
