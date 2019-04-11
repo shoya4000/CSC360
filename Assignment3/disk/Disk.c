@@ -13,7 +13,7 @@ void createDisk() {
 	fclose(disk);
 }
 
-void writeBlock(FILE* disk, int blockNum, char* data, int size) {
+void writeBlock(FILE* disk, int blockNum, void* data, int size) {
 	fseek(disk, blockNum * BLOCK_SIZE, SEEK_SET);
 	fwrite(data, size, 1, disk);
 }
