@@ -1,5 +1,5 @@
-all: kapish.c
-	gcc -g -o -Wall -Werror kapish kapish.c
+all: test01.c test02.c
+	gcc -g -o -Wall -Werror all test01.c test02.c
 
 clean: 
-	  $(RM) kapish
+	  $(RM) all

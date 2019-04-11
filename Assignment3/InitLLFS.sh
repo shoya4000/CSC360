@@ -2,4 +2,6 @@
 
 rm -r disk; mkdir disk
 cd io
-Make
+make
+cd ../apps
+make
