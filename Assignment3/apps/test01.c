@@ -30,6 +30,6 @@ int main(int argc, char* argv[]) {
 	free(buffer);
 	fclose(disk);
 	char* myInode = createEmptyInode();
-	printf(myInode);
+	printf("%s", myInode);
 	return 0;
 }
