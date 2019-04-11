@@ -29,7 +29,5 @@ int main(int argc, char* argv[]) {
 	printf("%s\n", buffer);
 	free(buffer);
 	fclose(disk);
-	char* myInode = createEmptyInode();
-	printf("%s", myInode);
 	return 0;
 }
