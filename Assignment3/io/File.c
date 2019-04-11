@@ -22,7 +22,7 @@ void initLLFS(FILE* disk) {
 		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
-	struct FreeBlockVector {
+	struct FreeBlockVector = {
 		0, 0, 0, 0xf
 	};
 }
