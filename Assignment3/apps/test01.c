@@ -32,8 +32,13 @@ int main(int argc, char* argv[]) {
 				int block = atoi(strtok(NULL, " "));
 				char* buffer = (char*)malloc(512);
 				readBlock(block, buffer);
-				printf("%s", buffer);
-				printf("wut");
+				int i;
+				for (i = 0; i < BLOCK_SIZE; i++) {
+					printf("%2x ", buffer[i]);
+				}
+				printf("\n");
+				free(buffer);
+				printf("wut\n");
 				break;
 			}
 			else if (strncmp(parsed, "hello", 512) == 0 ) {
