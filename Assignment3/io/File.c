@@ -8,7 +8,7 @@
 
 const int INODE_SIZE = 32;
 
-void initLLFS(File* disk) {
+void initLLFS(FILE* disk) {
 	writeBlock(disk, 0, "amok", len("amok"));
 }
 
