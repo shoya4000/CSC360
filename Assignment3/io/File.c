@@ -11,11 +11,10 @@ const int MAGIC_NUMBER = 0x616d6f6b;
 
 void initLLFS(FILE* disk) {
 	char superBlockInit[12];
-	printf("%x%x", MAGIC_NUMBER, NUM_BLOCKS);
-	printf("%c", MAGIC_NUMBER);
-	sprintf(superBlockInit, "%x%x", MAGIC_NUMBER, NUM_BLOCKS);
+	printf("%d%d", MAGIC_NUMBER, NUM_BLOCKS);
+	sprintf(superBlockInit, "%d%d", MAGIC_NUMBER, NUM_BLOCKS);
 	printf("%s", superBlockInit);
-	writeBlock(disk, 0, MAGIC_NUMBER, strlen(superBlockInit));
+	writeBlock(disk, 0, superBlockInit, strlen(superBlockInit));
 }
 
 char* createEmptyInode() {
