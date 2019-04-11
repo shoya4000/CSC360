@@ -8,10 +8,10 @@ OBJ = io/File.o disk/Disk.o
 
 all: test01 test02
 
-test01: apps/test01.c 
+test01: apps/test01.c io/File.o disk/Disk.o
 	$(CC) -o test01 apps/test01.c $(CFLAGS)
 
-test02: apps/test02.c
+test02: apps/test02.c io/File.o disk/Disk.o
 	$(CC) -o test02 apps/test02.c $(CFLAGS)
 
 clean:
