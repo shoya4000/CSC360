@@ -9,12 +9,15 @@
 const int INODE_SIZE = 32;
 const int MAGIC_NUMBER = 0x616d6f6b;
 
+struct Superblock {
+	int_t magic;
+}
+
 void initLLFS(FILE* disk) {
-	char superBlockInit[12];
-	printf("%d%d", MAGIC_NUMBER, NUM_BLOCKS);
-	sprintf(superBlockInit, "%d%d", MAGIC_NUMBER, NUM_BLOCKS);
-	printf("%s", superBlockInit);
-	writeBlock(disk, 0, &MAGIC_NUMBER, strlen(superBlockInit));
+	struct Superblock super = {
+		.magic = MAGIC_NUMBER
+	};
+	writeBlock(disk, 0, &super, strlen(superBlockInit));
 }
 
 char* createEmptyInode() {
