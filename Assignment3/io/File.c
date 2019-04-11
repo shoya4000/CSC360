@@ -25,12 +25,21 @@ void initLLFS(FILE* disk) {
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
+	if (!freeBlocks) {
+		printf("Memory allocation failed\n");
+		exit();
+	}
 	int i;
 	for (i = NUM_BLOCKS - 1; i >= 10; i--) {
 		SetBit(freeBlocks, i);
 	}
-	for (i = 0; i <= 12; i++) {
-		printf("printing bit %d: %d\n", i, TestBit(freeBlocks, i) != 0);
+	printf("Confirming blocks 0-9 reserved\n", "");
+	for (i = 0; i < 10; i++) {
+		if (TestBit(freeBlocks, i) != 0) {
+			printf("Error in block reservation\n");
+			exit();
+		}
+		//printf("printing bit %d: %d\n", i, TestBit(freeBlocks, i) != 0);
 	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 }
