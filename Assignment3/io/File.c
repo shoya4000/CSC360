@@ -26,7 +26,7 @@ void initLLFS(FILE* disk) {
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
 	int i;
-	for (i = 10; i < NUM_BLOCKS - 10; i++) {
+	for (i = NUM_BLOCKS; i > 10; i--) {
 		SetBit(freeBlocks, i);
 	}
 	//memset(freeBlocks + 1 , 0x3f, 1);
