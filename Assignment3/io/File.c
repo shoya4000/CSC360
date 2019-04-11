@@ -22,10 +22,9 @@ void initLLFS(FILE* disk) {
 		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
-	struct FreeBlockVector freeBlocks = {
-		0, 0, 0, 0xf
-	};
-	writeBlock(disk, 1, &freeBlocks, sizeof(freeBlocks));
+	char* freeBlocks = malloc(BLOCK_SIZE - 10);
+	memset(freeBlocks, 1, BLOCK_SIZE - 10);
+	writeBlock(disk, 1, freeBlocks, sizeof(freeBlocks));
 }
 
 char* createEmptyInode() {
