@@ -11,7 +11,7 @@ const int INODE_SIZE = 32;
 const int INODE_COUNT = 2048;
 
 struct Superblock {
-	uint32_t magic;
+	int magic;
 };
 
 void initLLFS(FILE* disk) {
