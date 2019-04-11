@@ -27,7 +27,7 @@ void initLLFS(FILE* disk) {
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
 	if (!freeBlocks) {
 		printf("Memory allocation failed\n");
-		exit();
+		exit(0);
 	}
 	int i;
 	for (i = NUM_BLOCKS - 1; i >= 10; i--) {
@@ -37,7 +37,7 @@ void initLLFS(FILE* disk) {
 	for (i = 0; i < 10; i++) {
 		if (TestBit(freeBlocks, i) != 0) {
 			printf("Error in block reservation\n");
-			exit();
+			exit(0);
 		}
 		//printf("printing bit %d: %d\n", i, TestBit(freeBlocks, i) != 0);
 	}
