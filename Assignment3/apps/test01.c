@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
 	free(buffer);
 
 	int i;
-	for (i = 1; i < 3; i++) {
+	for (i = 0; i < 2; i++) {
 		createFile(disk);
 		writeToFile(disk, "Hello World!", 12, i);
 		char* buffer1 = malloc(sizeof(char) * BLOCK_SIZE);
