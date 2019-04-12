@@ -48,9 +48,9 @@ void confirmSuperBlock(int* buffer) {
 }
 
 void confirmFreeBlockVector(int* buffer) {
-	printWithPause("Confirming blocks 0-9 reserved...\n");
+	printWithPause("Confirming blocks 0-131 reserved...\n");
 	int i;
-	for (i = 0; i < 10; i++) {
+	for (i = 0; i < 132; i++) {
 		if (TestBit(buffer, i) != 0) {
 			printf("Error in block reservation\n");
 			exit(1);
@@ -58,8 +58,8 @@ void confirmFreeBlockVector(int* buffer) {
 	}
 	printf("Blocks 0-9 are reserved\n");
 
-	printWithPause("Confirming blocks 10-4095 free...\n");
-	for (i = 10; i < NUM_BLOCKS; i++) {
+	printWithPause("Confirming blocks 132-4095 free...\n");
+	for (i = 132; i < NUM_BLOCKS; i++) {
 		if (!TestBit(buffer, i) != 0) {
 			printf("Error in block reservation\n");
 			exit(1);

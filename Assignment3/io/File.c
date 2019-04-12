@@ -45,7 +45,7 @@ void initLLFS(FILE* disk) {
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
 	check_mem_fail(freeBlocks);
 	int i;
-	for (i = 10; i < NUM_BLOCKS; i++) {
+	for (i = 132; i < NUM_BLOCKS; i++) {
 		SetBit(freeBlocks, i);
 	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
@@ -59,15 +59,33 @@ void initLLFS(FILE* disk) {
 	free(freeInodes);
 }
 
+int findFirstFreeInode() {
+	int* buffer = (int*)malloc(NUM_BLOCKS / 2);
+	readBlock(disk, 2, buffer);
+	int i;
+	for (i = 0; i < NUM_BLOCKS / 2; i++) {
+		if (TestBit(buffer, i) != 0) {
+			ClearBit(buffer, i);
+			return i;
+		}
+	}
+	printf("No free Inodes remaining\n");
+	exit(1);
+}
+
+
 void createFile(FILE* disk) {
 	struct Inode inode = {
 		.direct[0] = 132 //132 and other values will need to be free blocks that are found
 	};
+	int offset = findFirstFreeInode();
 	writeBlock(disk, 3, &inode, INODE_SIZE);
 	//3 is the block where it puts it, will need to change that to be finding a free spot for inode
 }
 
 void writeToFile(FILE* disk, void* data, int size) {
+
+
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
 	//3 below is just reading first inode, need to make dynamic
