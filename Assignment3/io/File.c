@@ -83,7 +83,7 @@ int findFirstFreeBlock(FILE* disk) {
 	check_mem_fail(freeBlocks);
 	readBlock(disk, 1, freeBlocks);
 	int i;
-	for (i = 132; i < NUM_BLOCKS; i++) {
+	for (i = 0; i < NUM_BLOCKS; i++) {
 		if (TestBit(freeBlocks, i) != 0) {
 			ClearBit(freeBlocks, i);
 			writeBlock(disk, 1, freeBlocks, BLOCK_SIZE);
