@@ -10,7 +10,7 @@
 
 void printWithPause(char* str) {
 	printf("%s", str);
-	sleep(1);
+	//sleep(1);
 }
 
 void testCreateDisk() {
