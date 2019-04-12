@@ -68,6 +68,19 @@ void confirmFreeBlockVector(int* buffer) {
 	printf("Blocks 10-4095 are free\n");
 }
 
+void confirmFreeInodeVector(int* buffer) {
+	printWithPause("Confirming Inodes 0-2047 free...\n");
+	int i;
+	for (i = 0; i < NUM_BLOCKS / 2; i++) {
+		if (!TestBit(buffer, i) != 0) {
+			printf("Error in block reservation\n");
+			exit(1);
+		}
+	}
+	printf("Inodes 0-2047 are free\n");
+}
+
+
 
 int main(int argc, char* argv[]) {
 	testCreateDisk();
@@ -82,6 +95,10 @@ int main(int argc, char* argv[]) {
 	printWithPause("Reading Free Block Vector...\n");
 	readBlock(disk, 1, buffer);
 	confirmFreeBlockVector(buffer);
+
+	printWithPause("Reading Free Inode Vector...\n");
+	readBlock(disk, 2, buffer);
+	confirmFreeInodeVector(buffer);
 
 	free(buffer);
 
