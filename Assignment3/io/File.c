@@ -87,7 +87,6 @@ void createFile(FILE* disk) {
 	memcpy(inodesBuffer + (offset), &inode, INODE_SIZE);
 
 	writeBlock(disk, 3, inodesBuffer, BLOCK_SIZE);
-	//3 is the block where it puts it, will need to change that to be finding a free spot for inode
 }
 
 void writeToFile(FILE* disk, void* data, int size) {
