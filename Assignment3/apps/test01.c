@@ -31,11 +31,15 @@ int main(int argc, char* argv[]) {
 	printf("Confirming SuperBlock values\n");
 	int* buffer1 = (int*)malloc(NUM_BLOCKS);
 	readBlock(disk, 0, buffer1);
-	int i;
-	for (i = 0; i < 12; i++) {
-		printf("%x\n", buffer1[i]);
+	if (buffer1[0] != MAGIC_NUMBER) {
+		printf("Magic number is incorrect\n");
 	}
-	//printf("%d\n", buffer1);
+	if (buffer1[1] != NUM_BLOCKS) {
+		printf("Number of blocks is incorrect\n");
+	}
+	if (buffer1[2] != INODE_COUNT) {
+		printf("Inode count is incorrect\n");
+	}
 	free(buffer1);
 
 	printWithPause("Reading Free Block Vector...\n");
@@ -43,6 +47,7 @@ int main(int argc, char* argv[]) {
 	readBlock(disk, 1, buffer2);
 
 	printWithPause("Confirming blocks 0-9 reserved...\n");
+	int i;
 	for (i = 0; i < 10; i++) {
 		if (TestBit(buffer2, i) != 0) {
 			printf("Error in block reservation\n");
