@@ -47,20 +47,7 @@ void confirmSuperBlock(int* buffer) {
 	printf("SuperBlock values are correct\n");
 }
 
-int main(int argc, char* argv[]) {
-	testCreateDisk();
-	FILE* disk = testAccessDisk();
-	testInitLLFS(disk);
-
-	printWithPause("Reading SuperBlock...\n");
-	int* buffer = (int*)malloc(NUM_BLOCKS);
-	readBlock(disk, 0, buffer);
-
-	confirmSuperBlock(buffer);
-
-	printWithPause("Reading Free Block Vector...\n");
-	readBlock(disk, 1, buffer);
-
+void confirmFreeBlockVector(buffer) {
 	printWithPause("Confirming blocks 0-9 reserved...\n");
 	int i;
 	for (i = 0; i < 10; i++) {
@@ -79,6 +66,23 @@ int main(int argc, char* argv[]) {
 		}
 	}
 	printf("Blocks 10-4095 are free\n");
+}
+
+
+int main(int argc, char* argv[]) {
+	testCreateDisk();
+	FILE* disk = testAccessDisk();
+	testInitLLFS(disk);
+
+	printWithPause("Reading SuperBlock...\n");
+	int* buffer = (int*)malloc(NUM_BLOCKS);
+	readBlock(disk, 0, buffer);
+	confirmSuperBlock(buffer);
+
+	printWithPause("Reading Free Block Vector...\n");
+	readBlock(disk, 1, buffer);
+	confirmFreeBlockVector(buffer);
+
 	free(buffer);
 
 	fclose(disk);
