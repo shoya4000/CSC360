@@ -109,6 +109,7 @@ int main(int argc, char* argv[]) {
 	for (i = 0; i < 50; i++) {
 		printf("%2x ", inodesBuffer[i]);
 	}
+	printf("After CreatFile1\n");
 	writeToFile(disk, "Hello World!", 12);
 	createFile(disk);
 	char* buffer1 = malloc(sizeof(char) * BLOCK_SIZE);
