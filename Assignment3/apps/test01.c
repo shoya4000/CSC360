@@ -102,6 +102,8 @@ int main(int argc, char* argv[]) {
 
 	free(buffer);
 
+	createFile(disk);
+
 	int i;
 	for (i = 1; i < 3; i++) {
 		printf("Creating file %d\n", i );
