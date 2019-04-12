@@ -63,7 +63,7 @@ void createFile(FILE* disk) {
 	//char* inode = createEmptyInode();
 	// Add more things to inode?
 	struct Inode inode = {
-		0, 0, 132, 0, 0
+		0, 0, [132], 0, 0
 	};
 	writeBlock(disk, 2, &inode, 32);
 
