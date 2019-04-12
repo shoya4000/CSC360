@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 	int* buffer1 = (int*)malloc(NUM_BLOCKS);
 	readBlock(disk, 0, buffer1);
 	int i;
-	for (i = 0; i < 12; 1++) {
+	for (i = 0; i < 12; i++) {
 		printf("%x\n", buffer1[i]);
 	}
 	//printf("%d\n", buffer1);
@@ -43,7 +43,6 @@ int main(int argc, char* argv[]) {
 	readBlock(disk, 1, buffer2);
 
 	printWithPause("Confirming blocks 0-9 reserved...\n");
-	int i;
 	for (i = 0; i < 10; i++) {
 		if (TestBit(buffer2, i) != 0) {
 			printf("Error in block reservation\n");
