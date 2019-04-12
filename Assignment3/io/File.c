@@ -15,6 +15,20 @@ struct Super {
 	uint32_t mag, blocks, inodes, head;
 };
 
+struct Inode {
+	uint32_t size, flags;
+	uint16_t direct[10], indirectBlock, doubleIndirectBlock;
+}
+
+struct DentryNode {
+	uint16_t inode;
+	char fileName[20];
+}
+
+struct Dentry {
+	struct DentryNode dentryNodeList[16];
+}
+
 void check_mem_fail(const void *a) {
 //check memory allocation succeeded
 	if (!a) {
@@ -53,7 +67,7 @@ void createFile(FILE* disk) {
 	free(inode);
 }
 
-void writeToFile(FILE* disk, char* data, int size) {
+void writeToFile(FILE* disk, void* data, int size) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
 	readBlock(disk, 2, inodeBuffer);
@@ -64,7 +78,7 @@ void writeToFile(FILE* disk, char* data, int size) {
 	free(inodeBuffer);
 }
 
-void readFile(FILE* disk, char* buffer) {
+void readFile(FILE* disk, void* buffer) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
 	readBlock(disk, 2, inodeBuffer);
