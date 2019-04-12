@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
 	free(buffer);
 
 	int i;
-	for (int i = 1; i < 3; i++) {
+	for (i = 1; i < 3; i++) {
 		printf("Creating file %d\n", i );
 		createFile(disk);
 		printf("Writing to file %d\n", i );
