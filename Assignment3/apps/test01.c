@@ -107,7 +107,7 @@ int main(int argc, char* argv[]) {
 		printf("Creating file %d\n", i + 1);
 		createFile(disk);
 		printf("Writing to file %d\n", i + 1);
-		char* str[14];
+		char str[14];
 		sprintf(str, "%d.Hello World!", i + 1);
 		writeToFile(disk, str, 14, i);
 		printf("Reading from file %d\n", i + 1);
