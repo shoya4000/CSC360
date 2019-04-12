@@ -31,7 +31,12 @@ int main(int argc, char* argv[]) {
 	printf("Confirming SuperBlock values\n");
 	char* buffer1 = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 0, buffer1);
-	printf("%x\n", buffer1);
+	struct Super superInit = {
+		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
+	};
+	int value = strcmp(buffer, superInit);
+	printf("Value is: %d", value);
+	printf("%s\n", buffer1);
 	free(buffer1);
 
 	printWithPause("Reading Free Block Vector...\n");
