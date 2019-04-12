@@ -100,7 +100,6 @@ void createFile(FILE* disk) {
 	free(inodesBuffer);
 	inodesBuffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 3, inodesBuffer);
-	int i;
 	for (i = 0; i < 50; i++) {
 		printf("%2x ", inodesBuffer[i]);
 	}
