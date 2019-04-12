@@ -22,7 +22,7 @@ struct Inode {
 
 struct DentryNode {
 	uint16_t inode;
-	char fileName[20];
+	char fileName[30];
 };
 
 struct Dentry {
@@ -51,6 +51,10 @@ void initLLFS(FILE* disk) {
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 }
 
+int findFreeInodePos() {
+
+}
+
 char* createEmptyInode() {
 	char* inode = malloc(INODE_SIZE);
 	check_mem_fail(inode);
@@ -60,9 +64,12 @@ char* createEmptyInode() {
 }
 
 void createFile(FILE* disk) {
-	char* inode = createEmptyInode();
+	//char* inode = createEmptyInode();
 	// Add more things to inode?
-	writeBlock(disk, 2, inode, 32);
+	struct Inode inode = {
+		0, 0, 132, 0, 0
+	};
+	writeBlock(disk, 2, &inode, 32);
 
 	free(inode);
 }
@@ -88,3 +95,6 @@ void readFile(FILE* disk, void* buffer) {
 
 	free(inodeBuffer);
 }
+
+//3-131 inodes
+//132-4095 data blocks
