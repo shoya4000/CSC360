@@ -49,31 +49,22 @@ void initLLFS(FILE* disk) {
 		SetBit(freeBlocks, i);
 	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
-}
 
-char* createEmptyInode() {
-	char* inode = malloc(INODE_SIZE);
-	check_mem_fail(inode);
-	uint16_t dataBlock1 = 3;
-	memcpy(inode + 8, &dataBlock1, 2);
-	return inode;
 }
 
 void createFile(FILE* disk) {
-	//char* inode = createEmptyInode();
-	// Add more things to inode?
 	struct Inode inode = {
-		.direct[0] = 132
+		.direct[0] = 132 //132 and other values will need to be free blocks that are found
 	};
-	writeBlock(disk, 2, &inode, 32);
-
-	//free(inode);
+	writeBlock(disk, 3, &inode, INODE_SIZE);
+	//3 is the block where it puts it, will need to change that to be finding a free spot for inode
 }
 
 void writeToFile(FILE* disk, void* data, int size) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
-	readBlock(disk, 2, inodeBuffer);
+	//3 below is just reading first inode, need to make dynamic
+	readBlock(disk, 3, inodeBuffer);
 	uint16_t fileBlockNumber;
 	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
 	writeBlock(disk, fileBlockNumber, data, size);
@@ -84,8 +75,9 @@ void writeToFile(FILE* disk, void* data, int size) {
 void readFile(FILE* disk, void* buffer) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
-	readBlock(disk, 2, inodeBuffer);
-	short fileBlockNumber;
+	//3 below is just reading first inode, need to make dynamic
+	readBlock(disk, 3, inodeBuffer);
+	uint16_t fileBlockNumber;
 	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
 	readBlock(disk, fileBlockNumber, buffer);
 

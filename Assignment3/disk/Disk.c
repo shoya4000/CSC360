@@ -11,7 +11,7 @@ void createDisk() {
 	char* init = calloc(BLOCK_SIZE * NUM_BLOCKS, 1);
 	if (!init) {
 		printf("Memory allocation for Disk Initialization failed\n");
-		exit(0);
+		exit(1);
 	}
 	fwrite(init, BLOCK_SIZE * NUM_BLOCKS, 1, disk);
 	fclose(disk);
