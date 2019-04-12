@@ -51,10 +51,6 @@ void initLLFS(FILE* disk) {
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 }
 
-int findFreeInodePos() {
-
-}
-
 char* createEmptyInode() {
 	char* inode = malloc(INODE_SIZE);
 	check_mem_fail(inode);
