@@ -6,4 +6,4 @@ void initLLFS(FILE*);
 char* createEmptyInode();
 void createFile(FILE*);
 void writeToFile(FILE*, void*, int);
-void readFile(FILE*, void*, int);
+void readFile(FILE*, void*);
