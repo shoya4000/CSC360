@@ -56,6 +56,7 @@ int main(int argc, char* argv[]) {
 	int* buffer = (int*)malloc(NUM_BLOCKS);
 	readBlock(disk, 0, buffer);
 
+	confirmSuperBlock(buffer);
 
 	printWithPause("Reading Free Block Vector...\n");
 	readBlock(disk, 1, buffer);
