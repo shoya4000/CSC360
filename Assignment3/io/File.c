@@ -66,6 +66,7 @@ int findFirstFreeInode(FILE* disk) {
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
 		if (TestBit(buffer, i) != 0) {
 			ClearBit(buffer, i);
+			printf("ding\n");
 			return i;
 		}
 	}
