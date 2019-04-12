@@ -31,7 +31,11 @@ int main(int argc, char* argv[]) {
 	printf("Confirming SuperBlock values\n");
 	int* buffer1 = (int*)malloc(NUM_BLOCKS);
 	readBlock(disk, 0, buffer1);
-	printf("%d\n", buffer1);
+	int i;
+	for (i = 0; i < 12; 1++) {
+		printf("%x\n", buffer1[i]);
+	}
+	//printf("%d\n", buffer1);
 	free(buffer1);
 
 	printWithPause("Reading Free Block Vector...\n");
