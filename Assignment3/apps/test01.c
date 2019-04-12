@@ -9,7 +9,7 @@
 #include <BitOps.h>
 
 void printWithPause(char* str) {
-	printf("%s\n", str);
+	printf("%s", str);
 	sleep(1);
 }
 
