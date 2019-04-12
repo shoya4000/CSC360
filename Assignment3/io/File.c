@@ -67,7 +67,7 @@ void createFile(FILE* disk) {
 	};
 	writeBlock(disk, 2, &inode, 32);
 
-	free(inode);
+	//free(inode);
 }
 
 void writeToFile(FILE* disk, void* data, int size) {
