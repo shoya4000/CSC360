@@ -104,11 +104,11 @@ int main(int argc, char* argv[]) {
 
 	int i;
 	for (int i = 1; i < 3; i++) {
-		printWithPause("Creating file %d\n", i );
+		printf("Creating file %d\n", i );
 		createFile(disk);
-		printWithPause("Writing to file %d\n", i );
+		printf("Writing to file %d\n", i );
 		writeToFile(disk, "Hello World!", 12);
-		printWithPause("Reading from to file %d\n", i );
+		printf("Reading from to file %d\n", i );
 		char* buffer1 = malloc(sizeof(char) * BLOCK_SIZE);
 		readFile(disk, buffer1, i);
 		printf("%s\n", buffer1);
