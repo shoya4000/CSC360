@@ -29,14 +29,9 @@ int main(int argc, char* argv[]) {
 
 	printWithPause("Reading SuperBlock...\n");
 	printf("Confirming SuperBlock values\n");
-	char* buffer1 = (char*)malloc(BLOCK_SIZE);
+	int* buffer1 = (int*)malloc(NUM_BLOCKS);
 	readBlock(disk, 0, buffer1);
-	struct Super superInit = {
-		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
-	};
-	int value = strcmp(buffer1, &superInit);
-	printf("Value is: %d", value);
-	printf("%s\n", buffer1);
+	printf("%d\n", buffer1);
 	free(buffer1);
 
 	printWithPause("Reading Free Block Vector...\n");
@@ -51,8 +46,8 @@ int main(int argc, char* argv[]) {
 			exit(0);
 		}
 	}
-
 	printf("Blocks 0-9 are reserved\n");
+
 	printWithPause("Confirming blocks 10-4095 free...\n");
 	for (i = 10; i < NUM_BLOCKS; i++) {
 		if (!TestBit(buffer2, i) != 0) {
