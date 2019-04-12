@@ -49,14 +49,14 @@ void initLLFS(FILE* disk) {
 	for (i = 132; i < NUM_BLOCKS; i++) {
 		SetBit(freeBlocks, i);
 	}
-	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
+	writeBlock(disk, 1, freeBlocks, BLOCK_SIZE);
 	free(freeBlocks);
 
 	int* freeInodes = calloc(NUM_BLOCKS / 2, 1);
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
 		SetBit(freeInodes, i);
 	}
-	writeBlock(disk, 2, freeInodes, NUM_BLOCKS / 2);
+	writeBlock(disk, 2, freeInodes, BLOCK_SIZE / 2);
 	free(freeInodes);
 }
 
@@ -67,7 +67,7 @@ int findFirstFreeInode(FILE* disk) {
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
 		if (TestBit(freeInodes, i) != 0) {
 			ClearBit(freeInodes, i);
-			writeBlock(disk, 2, freeInodes, NUM_BLOCKS / 2);
+			writeBlock(disk, 2, freeInodes, BLOCK_SIZE / 2);
 			free(freeInodes);
 			return i;
 		}
