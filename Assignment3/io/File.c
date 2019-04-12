@@ -15,16 +15,21 @@ struct Super {
 	int mag, blocks, inodes, head;
 };
 
+void check_mem_fail(const void *a) {
+//check memory allocation succeeded
+	if (!a) {
+		fprintf(stderr, ("Memory allocation failed\n"));
+		exit(1);
+	}
+}
+
 void initLLFS(FILE* disk) {
 	struct Super superInit = {
 		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
-	if (!freeBlocks) {
-		printf("Memory allocation for Free Block Vector failed\n");
-		exit(0);
-	}
+	check_mem_fail(freeBlocks);
 	int i;
 	for (i = NUM_BLOCKS - 1; i >= 10; i--) {
 		SetBit(freeBlocks, i);
@@ -33,8 +38,39 @@ void initLLFS(FILE* disk) {
 }
 
 char* createEmptyInode() {
-	char* inode = (char*)malloc(INODE_SIZE);
+	char* inode = malloc(INODE_SIZE);
+	check_mem_fail(inode)
 	short dataBlock1 = 3;
-	memcpy(inode + 8, &dataBlock1, 2); //First direct block value pointing to block number 3
+	memcpy(inode + 8, &dataBlock1, 2);
 	return inode;
+}
+
+void createFile(FILE* disk) {
+	char* inode = createEmptyInode();
+	// Add more things to inode?
+	writeBlock(disk, 2, inode, 32);
+
+	free(inode);
+}
+
+void writeToFile(FILE* disk, char* data, int size) {
+	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
+	check_mem_fail(inodeBuffer)
+	readBlock(disk, 2, inodeBuffer);
+	short fileBlockNumber;
+	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
+	writeBlock(disk, fileBlockNumber, data, size);
+
+	free(inodeBuffer);
+}
+
+void readFile(FILE* disk, char* buffer) {
+	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
+	check_mem_fail(inodeBuffer)
+	readBlock(disk, 2, inodeBuffer);
+	short fileBlockNumber;
+	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
+	readBlock(disk, fileBlockNumber, buffer);
+
+	free(inodeBuffer);
 }
