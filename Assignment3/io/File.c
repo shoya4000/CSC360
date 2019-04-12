@@ -128,7 +128,7 @@ void readFile(FILE* disk, void* buffer, int fileNum) {
 	//3 below is just reading first inode, need to make dynamic
 	readBlock(disk, 3, inodeBuffer);
 	uint16_t fileBlockNumber;
-	memcpy(&fileBlockNumber, (fileNum * inodeBuffer) + 8, 2);
+	memcpy(&fileBlockNumber, inodeBuffer + (fileNum * INODE_SIZE) + 8, 2);
 	readBlock(disk, fileBlockNumber, buffer);
 
 	free(inodeBuffer);
