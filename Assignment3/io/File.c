@@ -84,7 +84,7 @@ void createFile(FILE* disk) {
 
 	char* inodesBuffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 3, inodesBuffer);
-	memcpy(inodesBuffer + (offset * INODE_SIZE * 8), &inode, INODE_SIZE);
+	memcpy(inodesBuffer + (offset * INODE_SIZE * 32), &inode, INODE_SIZE);
 
 	writeBlock(disk, 3, inodesBuffer, INODE_SIZE);
 	//3 is the block where it puts it, will need to change that to be finding a free spot for inode
