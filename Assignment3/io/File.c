@@ -49,11 +49,14 @@ void initLLFS(FILE* disk) {
 		SetBit(freeBlocks, i);
 	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
-	freeBlocks = calloc(NUM_BLOCKS / 2, 1);
+	free(freeBlocks);
+	int* freeInodes = calloc(NUM_BLOCKS / 2, 1);
+	freeInodes = calloc(NUM_BLOCKS / 2, 1);
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
-		SetBit(freeBlocks, i);
+		SetBit(freeInodes, i);
 	}
-	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS / 2);
+	writeBlock(disk, 2, freeInodes, NUM_BLOCKS / 2);
+	free(freeInodes);
 }
 
 void createFile(FILE* disk) {
