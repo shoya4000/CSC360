@@ -67,7 +67,7 @@ int findFirstFreeInode(FILE* disk) {
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
 		if (TestBit(freeInodes, i) != 0) {
 			ClearBit(freeInodes, i);
-			writeBlock(disk, 2, freeInodes, NUM_BLOCKS / 2);
+			//writeBlock(disk, 2, freeInodes, NUM_BLOCKS / 2);
 			free(freeInodes);
 			return i;
 		}
@@ -81,7 +81,7 @@ void createFile(FILE* disk) {
 	struct Inode inode = {
 		.direct[0] = 132 //132 and other values will need to be free blocks that are found
 	};
-	//int offset = findFirstFreeInode(disk);
+	int offset = findFirstFreeInode(disk);
 
 	char* inodesBuffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 3, inodesBuffer);
