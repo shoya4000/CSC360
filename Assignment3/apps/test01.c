@@ -112,7 +112,7 @@ int main(int argc, char* argv[]) {
 		writeToFile(disk, str, 14, i);
 		printf("Reading from file %d\n", i + 1);
 		char* buffer1 = malloc(sizeof(char) * BLOCK_SIZE);
-		readFile(disk, buffer1);
+		readFile(disk, buffer1, i);
 		printf("%s\n", buffer1);
 		free(buffer1);
 	}
