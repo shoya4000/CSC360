@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 	struct Super superInit = {
 		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
-	int value = strcmp(buffer, superInit);
+	int value = strcmp(buffer1, superInit);
 	printf("Value is: %d", value);
 	printf("%s\n", buffer1);
 	free(buffer1);
