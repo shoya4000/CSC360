@@ -97,9 +97,9 @@ int findFirstFreeBlock(FILE* disk) {
 
 
 void createFile(FILE* disk) {
-	int block = findFirstFreeBlock(disk);
+	//int block = findFirstFreeBlock(disk);
 	struct Inode inode = {
-		.direct[0] = block //132 and other values will need to be free blocks that are found
+		.direct[0] = 132 //132 and other values will need to be free blocks that are found
 	};
 	int offset = findFirstFreeInode(disk);
 
