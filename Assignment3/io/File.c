@@ -51,10 +51,14 @@ void initLLFS(FILE* disk) {
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 }
 
+int findFreeInodePos() {
+
+}
+
 char* createEmptyInode() {
 	char* inode = malloc(INODE_SIZE);
 	check_mem_fail(inode);
-	short dataBlock1 = 3;
+	uint16_t dataBlock1 = 3;
 	memcpy(inode + 8, &dataBlock1, 2);
 	return inode;
 }
@@ -71,7 +75,7 @@ void writeToFile(FILE* disk, void* data, int size) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
 	readBlock(disk, 2, inodeBuffer);
-	short fileBlockNumber;
+	uint16_t fileBlockNumber;
 	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
 	writeBlock(disk, fileBlockNumber, data, size);
 
