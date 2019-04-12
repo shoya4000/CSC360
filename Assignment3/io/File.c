@@ -95,7 +95,7 @@ void createFile(FILE* disk) {
 		printf("%2x ", inodesBuffer[i]);
 	}
 
-	writeBlock(disk, 3, inodesBuffer, INODE_SIZE + ((offset + 1) * INODE_SIZE));
+	writeBlock(disk, 3, inodesBuffer, INODE_SIZE * (offset + 1));
 }
 
 void writeToFile(FILE* disk, void* data, int size) {
