@@ -81,6 +81,7 @@ int findFirstFreeInode(FILE* disk) {
 int findFirstFreeBlock(FILE* disk) {
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
 	check_mem_fail(freeBlocks);
+	readBlock(disk, 1, freeInodes);
 	int i;
 	for (i = 132; i < NUM_BLOCKS; i++) {
 		if (TestBit(freeBlocks, i) != 0) {
@@ -90,7 +91,7 @@ int findFirstFreeBlock(FILE* disk) {
 			return i;
 		}
 	}
-	printf("No free Inodes remaining\n");
+	printf("No free Blocks remaining\n");
 	exit(1);
 }
 
