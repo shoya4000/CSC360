@@ -102,16 +102,16 @@ int main(int argc, char* argv[]) {
 
 	free(buffer);
 
-	createFile(disk);
-	createFile(disk);
+	int i;
+	for (i = 1; i < 3; i++) {
+		createFile(disk);
+		writeToFile(disk, "Hello World!", 12);
+		char* buffer1 = malloc(sizeof(char) * BLOCK_SIZE);
+		readFile(disk, buffer1);
+		printf("%s\n", buffer1);
 
-	writeToFile(disk, "Hello World! 01", 12);
-	char* buffer1 = malloc(sizeof(char) * BLOCK_SIZE);
-	readFile(disk, buffer1);
-	printf("%s\n", buffer1);//assume we know it's a string
-
-	free(buffer1);
-
+		free(buffer1);
+	}
 
 	fclose(disk);
 	return 0;
