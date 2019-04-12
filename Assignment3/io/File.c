@@ -31,7 +31,7 @@ void initLLFS(FILE* disk) {
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
 	check_mem_fail(freeBlocks);
 	int i;
-	for (i = NUM_BLOCKS - 1; i >= 10; i--) {
+	for (i = 10; i > NUM_BLOCKS; i++) {
 		SetBit(freeBlocks, i);
 	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
