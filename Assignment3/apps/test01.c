@@ -47,7 +47,7 @@ void confirmSuperBlock(int* buffer) {
 	printf("SuperBlock values are correct\n");
 }
 
-void confirmFreeBlockVector(buffer) {
+void confirmFreeBlockVector(int* buffer) {
 	printWithPause("Confirming blocks 0-9 reserved...\n");
 	int i;
 	for (i = 0; i < 10; i++) {
