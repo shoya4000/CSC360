@@ -29,27 +29,29 @@ int main(int argc, char* argv[]) {
 
 	printWithPause("Reading SuperBlock...\n");
 	printf("Confirming SuperBlock values\n");
-	int* buffer1 = (int*)malloc(NUM_BLOCKS);
-	readBlock(disk, 0, buffer1);
-	if (buffer1[0] != MAGIC_NUMBER) {
+	int* buffer = (int*)malloc(NUM_BLOCKS);
+	readBlock(disk, 0, buffer);
+	if (buffer[0] != MAGIC_NUMBER) {
 		printf("Magic number is incorrect\n");
+		exit(0);
 	}
-	if (buffer1[1] != NUM_BLOCKS) {
+	if (buffer[1] != NUM_BLOCKS) {
 		printf("Number of blocks is incorrect\n");
+		exit(0);
 	}
-	if (buffer1[2] != INODE_COUNT) {
+	if (buffer[2] != INODE_COUNT) {
 		printf("Inode count is incorrect\n");
+		exit(0);
 	}
-	free(buffer1);
+	printf("SuperBlock values are correct\n");
 
 	printWithPause("Reading Free Block Vector...\n");
-	int* buffer2 = (int*)malloc(NUM_BLOCKS);
-	readBlock(disk, 1, buffer2);
+	readBlock(disk, 1, buffer);
 
 	printWithPause("Confirming blocks 0-9 reserved...\n");
 	int i;
 	for (i = 0; i < 10; i++) {
-		if (TestBit(buffer2, i) != 0) {
+		if (TestBit(buffer, i) != 0) {
 			printf("Error in block reservation\n");
 			exit(0);
 		}
@@ -58,13 +60,13 @@ int main(int argc, char* argv[]) {
 
 	printWithPause("Confirming blocks 10-4095 free...\n");
 	for (i = 10; i < NUM_BLOCKS; i++) {
-		if (!TestBit(buffer2, i) != 0) {
+		if (!TestBit(buffer, i) != 0) {
 			printf("Error in block reservation\n");
 			exit(0);
 		}
 	}
 	printf("Blocks 10-4095 are free\n");
-	free(buffer2);
+	free(buffer);
 
 	fclose(disk);
 	return 0;
