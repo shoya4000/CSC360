@@ -42,6 +42,7 @@ void initLLFS(FILE* disk) {
 		MAGIC_NUMBER, NUM_BLOCKS, INODE_COUNT, 0
 	};
 	writeBlock(disk, 0, &superInit, sizeof(superInit));
+
 	int* freeBlocks = calloc(NUM_BLOCKS, 1);
 	check_mem_fail(freeBlocks);
 	int i;
@@ -50,8 +51,8 @@ void initLLFS(FILE* disk) {
 	}
 	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS);
 	free(freeBlocks);
+
 	int* freeInodes = calloc(NUM_BLOCKS / 2, 1);
-	freeInodes = calloc(NUM_BLOCKS / 2, 1);
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
 		SetBit(freeInodes, i);
 	}
@@ -60,14 +61,14 @@ void initLLFS(FILE* disk) {
 }
 
 int findFirstFreeInode(FILE* disk) {
-	int* buffer = (int*)malloc(NUM_BLOCKS / 2);
-	readBlock(disk, 2, buffer);
+	int* freeInodes = calloc(NUM_BLOCKS / 2, 1);
+	readBlock(disk, 2, freeInodes);
 	int i;
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
-		if (TestBit(buffer, i) != 0) {
-			ClearBit(buffer, i);
-			writeBlock(disk, 2, buffer, NUM_BLOCKS / 2);
-			free(buffer);
+		if (TestBit(freeInodes, i) != 0) {
+			ClearBit(freeInodes, i);
+			writeBlock(disk, 2, freeInodes, NUM_BLOCKS / 2);
+			free(freeInodes);
 			return i;
 		}
 	}
