@@ -30,14 +30,7 @@ void testInitLLFS(FILE* disk) {
 	printf("LLFS initialized\n");
 }
 
-int main(int argc, char* argv[]) {
-	testCreateDisk();
-	FILE* disk = testAccessDisk();
-	testInitLLFS(disk);
-
-	printWithPause("Reading SuperBlock...\n");
-	int* buffer = (int*)malloc(NUM_BLOCKS);
-	readBlock(disk, 0, buffer);
+void confirmSuperBlock(int* buffer) {
 	printf("Confirming SuperBlock values\n");
 	if (buffer[0] != MAGIC_NUMBER) {
 		printf("Magic number is incorrect\n");
@@ -52,6 +45,17 @@ int main(int argc, char* argv[]) {
 		exit(0);
 	}
 	printf("SuperBlock values are correct\n");
+}
+
+int main(int argc, char* argv[]) {
+	testCreateDisk();
+	FILE* disk = testAccessDisk();
+	testInitLLFS(disk);
+
+	printWithPause("Reading SuperBlock...\n");
+	int* buffer = (int*)malloc(NUM_BLOCKS);
+	readBlock(disk, 0, buffer);
+
 
 	printWithPause("Reading Free Block Vector...\n");
 	readBlock(disk, 1, buffer);
