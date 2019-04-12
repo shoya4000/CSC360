@@ -13,24 +13,32 @@ void printWithPause(char* str) {
 	sleep(1);
 }
 
-int main(int argc, char* argv[]) {
-	printWithPause("Initializing LLFS...\n");
-	sleep(1);
+void testCreateDisk() {
 	printWithPause("Creating disk...\n");
 	createDisk();
 	printf("Empty disk created\n");
+}
 
+FILE* testAccessDisk() {
 	printWithPause("Accessing vdisk..\n");
-	FILE* disk = fopen("vdisk", "rb+");
+	return fopen("vdisk", "rb+");
+}
 
+void testInitLLFS(FILE* disk) {
 	printWithPause("Initializing LLFS..\n");
 	initLLFS(disk);
 	printf("LLFS initialized\n");
+}
+
+int main(int argc, char* argv[]) {
+	testCreateDisk();
+	FILE* disk = testAccessDisk();
+	testInitLLFS(disk);
 
 	printWithPause("Reading SuperBlock...\n");
-	printf("Confirming SuperBlock values\n");
 	int* buffer = (int*)malloc(NUM_BLOCKS);
 	readBlock(disk, 0, buffer);
+	printf("Confirming SuperBlock values\n");
 	if (buffer[0] != MAGIC_NUMBER) {
 		printf("Magic number is incorrect\n");
 		exit(0);
