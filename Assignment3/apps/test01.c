@@ -104,12 +104,16 @@ int main(int argc, char* argv[]) {
 
 	int i;
 	for (i = 0; i < 2; i++) {
+		printf("Creating file %d\n", i + 1);
 		createFile(disk);
-		writeToFile(disk, "Hello World!", 12, i);
+		printf("Writing to file %d\n", i + 1);
+		char* str[14];
+		sprintf(str, "%d.Hello World!", i + 1);
+		writeToFile(disk, str, 14, i);
+		printf("Reading from file %d\n", i + 1);
 		char* buffer1 = malloc(sizeof(char) * BLOCK_SIZE);
 		readFile(disk, buffer1);
 		printf("%s\n", buffer1);
-
 		free(buffer1);
 	}
 

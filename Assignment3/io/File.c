@@ -97,9 +97,9 @@ int findFirstFreeBlock(FILE* disk) {
 
 
 void createFile(FILE* disk) {
-	//int block = findFirstFreeBlock(disk);
+	int block = findFirstFreeBlock(disk);
 	struct Inode inode = {
-		.direct[0] = 132 //132 and other values will need to be free blocks that are found
+		.direct[0] = block
 	};
 	int offset = findFirstFreeInode(disk);
 
@@ -114,7 +114,6 @@ void createFile(FILE* disk) {
 void writeToFile(FILE* disk, void* data, int size, int inodeID) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
-	//3 below is just reading first inode, need to make dynamic
 	readBlock(disk, 3, inodeBuffer);
 	uint16_t fileBlockNumber;
 	memcpy(&fileBlockNumber, inodeBuffer + (inodeID * INODE_SIZE) + 8, 2);
@@ -123,13 +122,13 @@ void writeToFile(FILE* disk, void* data, int size, int inodeID) {
 	free(inodeBuffer);
 }
 
-void readFile(FILE* disk, void* buffer) {
+void readFile(FILE* disk, void* buffer, int inodeID) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
 	//3 below is just reading first inode, need to make dynamic
 	readBlock(disk, 3, inodeBuffer);
 	uint16_t fileBlockNumber;
-	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
+	memcpy(&fileBlockNumber, inodeBuffer + (inodeID * INODE_SIZE) + 8, 2);
 	readBlock(disk, fileBlockNumber, buffer);
 
 	free(inodeBuffer);
