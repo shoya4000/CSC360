@@ -84,9 +84,9 @@ void createFile(FILE* disk) {
 
 	char* inodesBuffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 3, inodesBuffer);
-	memcpy(inodesBuffer + 32, &inode, INODE_SIZE);
+	memcpy(inodesBuffer + INODE_SIZE, &inode, INODE_SIZE);
 
-	writeBlock(disk, 3, inodesBuffer, INODE_SIZE + 32);
+	writeBlock(disk, 3, inodesBuffer, INODE_SIZE + INODE_SIZE);
 }
 
 void writeToFile(FILE* disk, void* data, int size) {
