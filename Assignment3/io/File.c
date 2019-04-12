@@ -11,10 +11,6 @@ const int MAGIC_NUMBER = 0x6b6f6d61;
 const int INODE_SIZE = 32;
 const int INODE_COUNT = 2048;
 
-struct Super {
-	int mag, blocks, inodes, head;
-};
-
 void check_mem_fail(const void *a) {
 //check memory allocation succeeded
 	if (!a) {
