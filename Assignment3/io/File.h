@@ -5,5 +5,5 @@ const int INODE_COUNT;
 void initLLFS(FILE*);
 char* createEmptyInode();
 void createFile(FILE*);
-void writeToFile(FILE*, char*, int);
+void writeToFile(FILE*, void*, int);
 void readFile(FILE*, void*);

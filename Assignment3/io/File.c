@@ -18,16 +18,16 @@ struct Super {
 struct Inode {
 	uint32_t size, flags;
 	uint16_t direct[10], indirectBlock, doubleIndirectBlock;
-}
+};
 
 struct DentryNode {
 	uint16_t inode;
 	char fileName[20];
-}
+};
 
 struct Dentry {
 	struct DentryNode dentryNodeList[16];
-}
+};
 
 void check_mem_fail(const void *a) {
 //check memory allocation succeeded
