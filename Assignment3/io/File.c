@@ -67,7 +67,7 @@ int findFirstFreeInode(FILE* disk) {
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
 		if (TestBit(freeInodes, i) != 0) {
 			ClearBit(freeInodes, i);
-			//writeBlock(disk, 2, freeInodes, NUM_BLOCKS / 2);
+			writeBlock(disk, 2, freeInodes, i);
 			free(freeInodes);
 			return i;
 		}
