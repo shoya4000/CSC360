@@ -80,13 +80,13 @@ void createFile(FILE* disk) {
 	struct Inode inode = {
 		.direct[0] = 132 //132 and other values will need to be free blocks that are found
 	};
-	//int offset = findFirstFreeInode(disk);
+	int offset = findFirstFreeInode(disk);
 
 	char* inodesBuffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 3, inodesBuffer);
-	memcpy(inodesBuffer, &inode, INODE_SIZE);
+	memcpy(inodesBuffer + (offset * INODE_SIZE), &inode, INODE_SIZE);
 
-	writeBlock(disk, 3, inodesBuffer, INODE_SIZE);
+	writeBlock(disk, 3, inodesBuffer, BLOCK_SIZE);
 	//3 is the block where it puts it, will need to change that to be finding a free spot for inode
 }
 
