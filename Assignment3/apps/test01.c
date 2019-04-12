@@ -28,9 +28,10 @@ int main(int argc, char* argv[]) {
 	printf("LLFS initialized\n");
 
 	printWithPause("Reading SuperBlock...\n");
+	printf("Confirming SuperBlock values\n");
 	char* buffer1 = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 0, buffer1);
-	printf("%s\n", buffer1);
+	printf("%x\n", buffer1);
 	free(buffer1);
 
 	printWithPause("Reading Free Block Vector...\n");
