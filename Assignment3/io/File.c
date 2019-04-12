@@ -97,6 +97,14 @@ void createFile(FILE* disk) {
 	}
 	printf("After\n");
 	writeBlock(disk, 3, inodesBuffer, INODE_SIZE * (offset + 1));
+	free(inodesBuffer);
+	inodesBuffer = (char*)malloc(BLOCK_SIZE);
+	readBlock(disk, 3, inodesBuffer);
+	int i;
+	for (i = 0; i < 50; i++) {
+		printf("%2x ", inodesBuffer[i]);
+	}
+	printf("After write\n");
 }
 
 void writeToFile(FILE* disk, void* data, int size) {
