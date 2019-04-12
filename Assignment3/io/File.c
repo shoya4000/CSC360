@@ -86,7 +86,7 @@ void createFile(FILE* disk) {
 	readBlock(disk, 3, inodesBuffer);
 	memcpy(inodesBuffer, &inode, INODE_SIZE);
 
-	writeBlock(disk, 3, inodesBuffer, INODE_SIZE * offset);
+	writeBlock(disk, 3, inodesBuffer, INODE_SIZE);
 }
 
 void writeToFile(FILE* disk, void* data, int size) {
