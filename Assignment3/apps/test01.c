@@ -103,15 +103,8 @@ int main(int argc, char* argv[]) {
 	free(buffer);
 
 	createFile(disk);
-	char* inodesBuffer = (char*)malloc(BLOCK_SIZE);
-	readBlock(disk, 3, inodesBuffer);
-	int i;
-	for (i = 0; i < 50; i++) {
-		printf("%2x ", inodesBuffer[i]);
-	}
-	printf("After CreatFile1\n");
-	writeToFile(disk, "Hello World!", 12);
 	createFile(disk);
+	writeToFile(disk, "Hello World!", 12);
 	char* buffer1 = malloc(sizeof(char) * BLOCK_SIZE);
 	readFile(disk, buffer1);
 	printf("%s\n", buffer1);//assume we know it's a string
