@@ -53,7 +53,7 @@ void initLLFS(FILE* disk) {
 	for (i = 0; i < NUM_BLOCKS / 2; i++) {
 		SetBit(freeBlocks, i);
 	}
-	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS\2);
+	writeBlock(disk, 1, freeBlocks, NUM_BLOCKS / 2);
 }
 
 void createFile(FILE* disk) {
