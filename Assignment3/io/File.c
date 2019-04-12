@@ -39,7 +39,7 @@ void initLLFS(FILE* disk) {
 
 char* createEmptyInode() {
 	char* inode = malloc(INODE_SIZE);
-	check_mem_fail(inode)
+	check_mem_fail(inode);
 	short dataBlock1 = 3;
 	memcpy(inode + 8, &dataBlock1, 2);
 	return inode;
@@ -55,7 +55,7 @@ void createFile(FILE* disk) {
 
 void writeToFile(FILE* disk, char* data, int size) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
-	check_mem_fail(inodeBuffer)
+	check_mem_fail(inodeBuffer);
 	readBlock(disk, 2, inodeBuffer);
 	short fileBlockNumber;
 	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
@@ -66,7 +66,7 @@ void writeToFile(FILE* disk, char* data, int size) {
 
 void readFile(FILE* disk, char* buffer) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
-	check_mem_fail(inodeBuffer)
+	check_mem_fail(inodeBuffer);
 	readBlock(disk, 2, inodeBuffer);
 	short fileBlockNumber;
 	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
