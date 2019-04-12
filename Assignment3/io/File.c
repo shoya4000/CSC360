@@ -90,9 +90,9 @@ void createFile(FILE* disk) {
 		printf("%2x ", inodesBuffer[i]);
 	}
 	printf("done\n");
-	memcpy(inodesBuffer + (0 * INODE_SIZE), &inode, INODE_SIZE);
+	memcpy(inodesBuffer + (offset * INODE_SIZE), &inode, INODE_SIZE);
 
-	writeBlock(disk, 3, inodesBuffer, INODE_SIZE * (0 + 1));
+	writeBlock(disk, 3, inodesBuffer, INODE_SIZE * (offset + 1));
 	free(inodesBuffer);
 }
 
