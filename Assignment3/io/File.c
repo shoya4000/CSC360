@@ -12,7 +12,7 @@ const int INODE_SIZE = 32;
 const int INODE_COUNT = 2048;
 
 struct Super {
-	int mag, blocks, inodes, head;
+	uint32_t mag, blocks, inodes, head;
 };
 
 void check_mem_fail(const void *a) {

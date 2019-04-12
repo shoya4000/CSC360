@@ -34,15 +34,15 @@ void confirmSuperBlock(int* buffer) {
 	printf("Confirming SuperBlock values\n");
 	if (buffer[0] != MAGIC_NUMBER) {
 		printf("Magic number is incorrect\n");
-		exit(0);
+		exit(1);
 	}
 	if (buffer[1] != NUM_BLOCKS) {
 		printf("Number of blocks is incorrect\n");
-		exit(0);
+		exit(1);
 	}
 	if (buffer[2] != INODE_COUNT) {
 		printf("Inode count is incorrect\n");
-		exit(0);
+		exit(1);
 	}
 	printf("SuperBlock values are correct\n");
 }
@@ -53,7 +53,7 @@ void confirmFreeBlockVector(int* buffer) {
 	for (i = 0; i < 10; i++) {
 		if (TestBit(buffer, i) != 0) {
 			printf("Error in block reservation\n");
-			exit(0);
+			exit(1);
 		}
 	}
 	printf("Blocks 0-9 are reserved\n");
@@ -62,7 +62,7 @@ void confirmFreeBlockVector(int* buffer) {
 	for (i = 10; i < NUM_BLOCKS; i++) {
 		if (!TestBit(buffer, i) != 0) {
 			printf("Error in block reservation\n");
-			exit(0);
+			exit(1);
 		}
 	}
 	printf("Blocks 10-4095 are free\n");
