@@ -67,7 +67,7 @@ int findFirstFreeInode(FILE* disk) {
 		if (TestBit(buffer, i) != 0) {
 			ClearBit(buffer, i);
 			writeBlock(disk, 2, buffer, NUM_BLOCKS / 2);
-			printf("Index of bit %d\n", i);
+			free(buffer);
 			return i;
 		}
 	}
@@ -84,8 +84,7 @@ void createFile(FILE* disk) {
 
 	char* inodesBuffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 3, inodesBuffer);
-	printf("%s\n", inodesBuffer);
-	memcpy(inodesBuffer + (offset * INODE_SIZE), &inode, INODE_SIZE);
+	memcpy(inodesBuffer + (offset * INODE_SIZE * 8), &inode, INODE_SIZE);
 
 	writeBlock(disk, 3, inodesBuffer, INODE_SIZE);
 	//3 is the block where it puts it, will need to change that to be finding a free spot for inode
