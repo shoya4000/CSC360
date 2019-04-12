@@ -111,13 +111,13 @@ void createFile(FILE* disk) {
 	free(inodesBuffer);
 }
 
-void writeToFile(FILE* disk, void* data, int size) {
+void writeToFile(FILE* disk, void* data, int size, int inodeID) {
 	char* inodeBuffer = (char*)malloc(BLOCK_SIZE);
 	check_mem_fail(inodeBuffer);
 	//3 below is just reading first inode, need to make dynamic
 	readBlock(disk, 3, inodeBuffer);
 	uint16_t fileBlockNumber;
-	memcpy(&fileBlockNumber, inodeBuffer + 8, 2);
+	memcpy(&fileBlockNumber, inodeBuffer + (inodeID * INODE_SIZE) + 8, 2);
 	writeBlock(disk, fileBlockNumber, data, size);
 
 	free(inodeBuffer);
