@@ -84,7 +84,7 @@ void createFile(FILE* disk) {
 
 	char* inodesBuffer = (char*)malloc(BLOCK_SIZE);
 	readBlock(disk, 3, inodesBuffer);
-	printf("%d\n", offset * INODE_SIZE);
+	printf("%s\n", inodesBuffer + (offset * INODE_SIZE));
 	memcpy(inodesBuffer + (offset * INODE_SIZE), &inode, INODE_SIZE);
 
 	writeBlock(disk, 3, inodesBuffer, INODE_SIZE);
